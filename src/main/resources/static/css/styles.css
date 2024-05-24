@@ -1,0 +1,48 @@
+body {
+    background-color: #f8f9fa; /* Light grey background */
+    height: 100vh;
+}
+
+.logreg-body{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+}
+.registration-form {
+    background-color: #fff; /* White background for the form */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Small shadow */
+    max-width: 50%;
+    margin: auto;
+}
+.floating-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+}
+.login-form {
+    background-color: white; /* White form background */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Small shadow */
+    max-width: 50%;
+    margin: auto;
+}
+.login-form a{
+    text-decoration: none;
+}
+.alert-message {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1050;
+}
+.navbar {
+    background-color: #ffffff; /* White navbar background */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Small shadow */
+}
+.card {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Small shadow */
+}
