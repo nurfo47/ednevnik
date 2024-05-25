@@ -2,10 +2,13 @@ package com.tfb.ednevnik.model;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -49,6 +53,18 @@ public class korisnik {
     @JoinColumn(name = "id_raz", nullable = true)
     private razred razred;
 
+    //One to many for table izostanci
+    @OneToMany(mappedBy = "korisnici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<izostanci> izostanciList;
+
+    //One to many for table predmet
+    @OneToMany(mappedBy = "korisnici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<predmet> predmetiList;
+
+    //One to many for table ocjene
+    @OneToMany(mappedBy = "korisnici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ocjene> ocjeneList;
+
     @ManyToMany
     @JoinTable(
         name = "Nas_Raz",
@@ -58,8 +74,8 @@ public class korisnik {
     private Set<razred> razredi = new HashSet<>();
 
     public korisnik(String ime, String prezime, String email, String username, String lozinka, String mobitel,
-            String jmbg, LocalDate datum, String tip, com.tfb.ednevnik.model.razred razred,
-            Set<com.tfb.ednevnik.model.razred> razredi) {
+            String jmbg, LocalDate datum, String tip, razred razred,
+            Set<razred> razredi, List<izostanci> izostanciList, List<predmet> predmetiList, List<ocjene> ocjeneList) {
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
@@ -71,6 +87,9 @@ public class korisnik {
         this.tip = tip;
         this.razred = razred;
         this.razredi = razredi;
+        this.izostanciList = izostanciList;
+        this.predmetiList = predmetiList;
+        this.ocjeneList = ocjeneList;
     }
 
     public long getId() {
@@ -167,5 +186,29 @@ public class korisnik {
 
     public void setRazredi(Set<razred> razredi) {
         this.razredi = razredi;
+    }
+
+    public List<izostanci> getIzostanciList() {
+        return izostanciList;
+    }
+    
+    public void setIzostanciList(List<izostanci> izostanciList) {
+        this.izostanciList = izostanciList;
+    }
+    
+    public List<predmet> getPredmetiList() {
+        return predmetiList;
+    }
+    
+    public void setPredmetiList(List<predmet> predmetiList) {
+        this.predmetiList = predmetiList;
+    }
+    
+    public List<ocjene> getOcjeneList() {
+        return ocjeneList;
+    }
+    
+    public void setOcjeneList(List<ocjene> ocjeneList) {
+        this.ocjeneList = ocjeneList;
     }
 }
