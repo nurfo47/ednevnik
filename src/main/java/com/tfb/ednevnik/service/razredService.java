@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.tfb.ednevnik.model.razred;
+import com.tfb.ednevnik.model.Razred;
 @Service
 public interface razredService {
-    List<razred> getAllRazred();
-    razred getRazredById(Long id);
-    razred saveRazred(razred razred);
+    List<Razred> getAllRazred();
+    Razred getRazredById(Long id);
+    Razred saveRazred(Razred razred);
     void deleteRazredById(Long id);
 }
