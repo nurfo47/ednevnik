@@ -9,24 +9,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RestController;
 
-import com.tfb.ednevnik.admindto.adminDto;
-import com.tfb.ednevnik.service.adminService;
+//import com.tfb.ednevnik.admindto.adminDto;
+import com.tfb.ednevnik.admindto.korisnikDto;
+//import com.tfb.ednevnik.service.adminService;
+import com.tfb.ednevnik.service.korisnikService;
 
 
 
 @Controller
 public class adminController {
+   // @Autowired
+    //private adminService adminService;
+
     @Autowired
-    private adminService adminService;
+    private korisnikService korisnikService;
 
     @GetMapping("/registration")
     public String getRegistrationPage() {
         return "register";
     }
 
-    @PostMapping("/registration")
-    public String saveAdmin(@ModelAttribute("admin") adminDto adminDto, Model model){
-        adminService.save(adminDto);
+    @PostMapping("admin-dashboard/registration")
+    public String saveKorisnik(@ModelAttribute("korisnik") korisnikDto korisnikDto, Model model){
+        korisnikService.saveKorisnik(korisnikDto);
         model.addAttribute("message", "Registracija uspjesna");
         return "redirect:/register?success";
     }
