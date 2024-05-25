@@ -92,6 +92,10 @@ public class korisnik {
         this.ocjeneList = ocjeneList;
     }
 
+    public korisnik() {
+        //TODO Auto-generated constructor stub
+    }
+
     public long getId() {
         return id;
     }
