@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="ocjene")
-public class ocjene {
+public class Ocjene {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,14 +22,14 @@ public class ocjene {
 
     @ManyToOne
     @JoinColumn(name = "id_pred", nullable = true)
-    private predmet predmet;
+    private Predmet predmet;
 
     @ManyToOne
     @JoinColumn(name = "id_kor", nullable = true)
-    private korisnik korisnik;
+    private Korisnik korisnik;
 
-    public ocjene(float ocjena, String oblast, LocalDate datum, com.tfb.ednevnik.model.predmet predmet,
-            com.tfb.ednevnik.model.korisnik korisnik) {
+    public Ocjene(float ocjena, String oblast, LocalDate datum, Predmet predmet,
+           Korisnik korisnik) {
         this.ocjena = ocjena;
         this.oblast = oblast;
         this.datum = datum;
@@ -69,19 +69,19 @@ public class ocjene {
         this.datum = datum;
     }
 
-    public predmet getPredmet() {
+    public Predmet getPredmet() {
         return predmet;
     }
 
-    public void setPredmet(predmet predmet) {
+    public void setPredmet(Predmet predmet) {
         this.predmet = predmet;
     }
 
-    public korisnik getKorisnik() {
+    public Korisnik getKorisnik() {
         return korisnik;
     }
 
-    public void setKorisnik(korisnik korisnik) {
+    public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
     }
 }

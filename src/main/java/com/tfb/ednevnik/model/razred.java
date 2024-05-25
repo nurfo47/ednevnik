@@ -20,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="razred")
-public class razred {
+public class Razred {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,16 +28,16 @@ public class razred {
     private String skolskaGodina;
 
     @OneToMany(mappedBy = "razred")
-    private Set<korisnik> ucenici = new HashSet<>();
+    private Set<Korisnik> ucenici = new HashSet<>();
 
-    @ManyToMany(mappedBy = "razredi")
-    private Set<korisnik> profesori = new HashSet<>();
-
-    @OneToMany(mappedBy = "razred", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<izostanci> izostanciList;
+    @ManyToMany(mappedBy = "razred")
+    private Set<Korisnik> profesori = new HashSet<>();
 
     @OneToMany(mappedBy = "razred", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<predmet> predmetiList;
+    private List<Izostanci> izostanciList;
+
+    @OneToMany(mappedBy = "razredi", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Predmet> predmetList;
 
     // Many to many relationship with Predmet
     @ManyToMany
@@ -46,16 +46,16 @@ public class razred {
         joinColumns = @JoinColumn(name = "razred_id"),
         inverseJoinColumns = @JoinColumn(name = "predmet_id")
     )
-    private List<predmet> predmeti;
+    private List<Predmet> predmeti;
 
 
-    public razred(String naziv, String skolskaGodina, Set<korisnik> ucenici, Set<korisnik> profesori, List<izostanci> izostanciList, List<predmet> predmetiList, List<predmet> predmeti) {
+    public Razred(String naziv, String skolskaGodina, Set<Korisnik> ucenici, Set<Korisnik> profesori, List<Izostanci> izostanciList, List<Predmet> predmetList, List<Predmet> predmeti) {
         this.naziv = naziv;
         this.skolskaGodina = skolskaGodina;
         this.ucenici = ucenici;
         this.profesori = profesori;
         this.izostanciList = izostanciList;
-        this.predmetiList = predmetiList;
+        this.predmetList = predmetList;
         this.predmeti = predmeti;
     }
 
@@ -83,43 +83,43 @@ public class razred {
         this.skolskaGodina = skolskaGodina;
     }
 
-    public Set<korisnik> getUcenici() {
+    public Set<Korisnik> getUcenici() {
         return ucenici;
     }
 
-    public void setUcenici(Set<korisnik> ucenici) {
+    public void setUcenici(Set<Korisnik> ucenici) {
         this.ucenici = ucenici;
     }
 
-    public Set<korisnik> getProfesori() {
+    public Set<Korisnik> getProfesori() {
         return profesori;
     }
 
-    public void setProfesori(Set<korisnik> profesori) {
+    public void setProfesori(Set<Korisnik> profesori) {
         this.profesori = profesori;
     }
 
-    public List<izostanci> getIzostanciList() {
+    public List<Izostanci> getIzostanciList() {
         return izostanciList;
     }
 
-    public void setIzostanciList(List<izostanci> izostanciList) {
+    public void setIzostanciList(List<Izostanci> izostanciList) {
         this.izostanciList = izostanciList;
     }
 
-    public List<predmet> getPredmetiList() {
-        return predmetiList;
+    public List<Predmet> getPredmetiLst() {
+        return predmetList;
     }
 
-    public void setPredmetiList(List<predmet> predmetiList) {
-        this.predmetiList = predmetiList;
+    public void setPredmetList(List<Predmet> predmetList) {
+        this.predmetList = predmetList;
     }
 
-    public List<predmet> getPredmeti() {
+    public List<Predmet> getPredmeti() {
         return predmeti;
     }
 
-    public void setPredmeti(List<predmet> predmeti) {
+    public void setPredmeti(List<Predmet> predmeti) {
         this.predmeti = predmeti;
     }
 }

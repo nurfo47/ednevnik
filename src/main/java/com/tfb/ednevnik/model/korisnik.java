@@ -23,7 +23,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="korisnik")
-public class korisnik {
+public class Korisnik {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -51,19 +51,19 @@ public class korisnik {
 
     @ManyToOne
     @JoinColumn(name = "id_raz", nullable = true)
-    private razred razred;
+    private Razred razred;
 
     //One to many for table izostanci
-    @OneToMany(mappedBy = "korisnici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<izostanci> izostanciList;
+    @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Izostanci> izostanciList;
 
     //One to many for table predmet
-    @OneToMany(mappedBy = "korisnici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<predmet> predmetiList;
+    @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Predmet> predmetiList;
 
     //One to many for table ocjene
-    @OneToMany(mappedBy = "korisnici", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ocjene> ocjeneList;
+    @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Ocjene> ocjeneList;
 
     @ManyToMany
     @JoinTable(
@@ -71,11 +71,11 @@ public class korisnik {
         joinColumns = @JoinColumn(name = "korisnik_id"),
         inverseJoinColumns = @JoinColumn(name = "razred_id")
     )
-    private Set<razred> razredi = new HashSet<>();
+    private Set<Razred> razredi = new HashSet<>();
 
-    public korisnik(String ime, String prezime, String email, String username, String lozinka, String mobitel,
-            String jmbg, LocalDate datum, String tip, razred razred,
-            Set<razred> razredi, List<izostanci> izostanciList, List<predmet> predmetiList, List<ocjene> ocjeneList) {
+    public Korisnik(String ime, String prezime, String email, String username, String lozinka, String mobitel,
+            String jmbg, LocalDate datum, String tip, Razred razred,
+            Set<Razred> razredi, List<Izostanci> izostanciList, List<Predmet> predmetiList, List<Ocjene> ocjeneList) {
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
@@ -92,7 +92,7 @@ public class korisnik {
         this.ocjeneList = ocjeneList;
     }
 
-    public korisnik() {
+    public Korisnik() {
         //TODO Auto-generated constructor stub
     }
 
@@ -176,43 +176,43 @@ public class korisnik {
         this.tip = tip;
     }
 
-    public razred getRazred() {
+    public Razred getRazred() {
         return razred;
     }
 
-    public void setRazred(razred razred) {
+    public void setRazred(Razred razred) {
         this.razred = razred;
     }
 
-    public Set<razred> getRazredi() {
+    public Set<Razred> getRazredi() {
         return razredi;
     }
 
-    public void setRazredi(Set<razred> razredi) {
+    public void setRazredi(Set<Razred> razredi) {
         this.razredi = razredi;
     }
 
-    public List<izostanci> getIzostanciList() {
+    public List<Izostanci> getIzostanciList() {
         return izostanciList;
     }
     
-    public void setIzostanciList(List<izostanci> izostanciList) {
+    public void setIzostanciList(List<Izostanci> izostanciList) {
         this.izostanciList = izostanciList;
     }
     
-    public List<predmet> getPredmetiList() {
+    public List<Predmet> getPredmetiList() {
         return predmetiList;
     }
     
-    public void setPredmetiList(List<predmet> predmetiList) {
+    public void setPredmetiList(List<Predmet> predmetiList) {
         this.predmetiList = predmetiList;
     }
     
-    public List<ocjene> getOcjeneList() {
+    public List<Ocjene> getOcjeneList() {
         return ocjeneList;
     }
     
-    public void setOcjeneList(List<ocjene> ocjeneList) {
+    public void setOcjeneList(List<Ocjene> ocjeneList) {
         this.ocjeneList = ocjeneList;
     }
 }

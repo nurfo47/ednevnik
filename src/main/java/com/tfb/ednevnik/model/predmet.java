@@ -15,7 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="predmet")
-public class predmet {
+public class Predmet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -23,18 +23,18 @@ public class predmet {
     
      // Many to many relationship with Razred
     @ManyToMany(mappedBy = "predmeti")
-    private List<razred> razredi;
+    private List<Razred> razredi;
 
     @ManyToOne
     @JoinColumn(name = "id_kor", nullable = true)
-    private korisnik korisnik;
+    private Korisnik korisnik;
 
     //One to many for table ocjene
     @OneToMany(mappedBy = "predmet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ocjene> ocjeneList;
+    private List<Ocjene> ocjeneList;
 
-    public predmet(String naziv, List<razred> razredi, com.tfb.ednevnik.model.korisnik korisnik,
-            List<ocjene> ocjeneList) {
+    public Predmet(String naziv, List<Razred> razredi, com.tfb.ednevnik.model.Korisnik korisnik,
+            List<Ocjene> ocjeneList) {
         this.naziv = naziv;
         this.razredi = razredi;
         this.korisnik = korisnik;
@@ -57,27 +57,27 @@ public class predmet {
         this.naziv = naziv;
     }
 
-    public List<razred> getRazredi() {
+    public List<Razred> getRazredi() {
         return razredi;
     }
 
-    public void setRazredi(List<razred> razredi) {
+    public void setRazredi(List<Razred> razredi) {
         this.razredi = razredi;
     }
 
-    public korisnik getKorisnik() {
+    public Korisnik getKorisnik() {
         return korisnik;
     }
 
-    public void setKorisnik(korisnik korisnik) {
+    public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
     }
 
-    public List<ocjene> getOcjeneList() {
+    public List<Ocjene> getOcjeneList() {
         return ocjeneList;
     }
 
-    public void setOcjeneList(List<ocjene> ocjeneList) {
+    public void setOcjeneList(List<Ocjene> ocjeneList) {
         this.ocjeneList = ocjeneList;
     }
 }

@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="izostanci")
-public class izostanci {
+public class Izostanci {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,14 +25,14 @@ public class izostanci {
 
     @ManyToOne
     @JoinColumn(name = "id_raz", nullable = true)
-    private razred razred;
+    private Razred razred;
 
     @ManyToOne
     @JoinColumn(name = "id_kor", nullable = true)
-    private korisnik korisnik;
+    private Korisnik korisnik;
 
-    public izostanci(LocalDate datum, String razlog, boolean opravdanost, razred razred,
-            korisnik korisnik) {
+    public Izostanci(LocalDate datum, String razlog, boolean opravdanost, Razred razred,
+            Korisnik korisnik) {
         this.datum = datum;
         this.razlog = razlog;
         this.opravdanost = opravdanost;
@@ -72,19 +72,19 @@ public class izostanci {
         this.opravdanost = opravdanost;
     }
 
-    public razred getRazred() {
+    public Razred getRazred() {
         return razred;
     }
 
-    public void setRazred(razred razred) {
+    public void setRazred(Razred razred) {
         this.razred = razred;
     }
 
-    public korisnik getKorisnik() {
+    public Korisnik getKorisnik() {
         return korisnik;
     }
 
-    public void setKorisnik(korisnik korisnik) {
+    public void setKorisnik(Korisnik korisnik) {
         this.korisnik = korisnik;
     }
 }
