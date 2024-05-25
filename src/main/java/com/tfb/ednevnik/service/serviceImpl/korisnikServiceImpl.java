@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tfb.ednevnik.admindto.korisnikDto;
-import com.tfb.ednevnik.model.korisnik;
+import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.service.korisnikService;
 import com.tfb.ednevnik.repository.korisnikRepository;
 @Service
@@ -21,7 +21,7 @@ public class korisnikServiceImpl implements korisnikService{
 
     @Override
     public void saveKorisnik(korisnikDto korisnikDto) {
-        korisnik korisnik = new korisnik();
+        Korisnik korisnik = new Korisnik();
         korisnik.setIme(korisnikDto.getIme());
         korisnik.setPrezime(korisnikDto.getPrezime());
         korisnik.setEmail(korisnikDto.getEmail());
@@ -36,13 +36,13 @@ public class korisnikServiceImpl implements korisnikService{
 }
 
     @Override
-    public List<korisnik> getAllKorisnik() {
+    public List<Korisnik> getAllKorisnik() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getAllKorisnik'");
     }
 
     @Override
-    public korisnik findKorisnikById(long id) {
+    public Korisnik findKorisnikById(long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findKorisnikById'");
     }
@@ -54,7 +54,7 @@ public class korisnikServiceImpl implements korisnikService{
     }
 
     @Override
-    public korisnik updateKorisnik(korisnik korisnik) {
+    public Korisnik updateKorisnik(Korisnik korisnik) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateKorisnik'");
     }
