@@ -5,32 +5,55 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.model.admin;
 
 public class CustomUserDetail implements UserDetails{
 
     private admin admin;
-    
+    private Korisnik korisnik;
 
     
-    public CustomUserDetail(admin admin) {
+    public CustomUserDetail(admin admin, Korisnik korisnik) {
         this.admin = admin;
+        this.korisnik = korisnik;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(()->admin.getRole());
+        if (admin != null) {
+            return List.of(() -> admin.getRole());
+        } else if (korisnik != null) {
+            return List.of(() -> korisnik.getTip());
+        } else {
+            return List.of();
+        }
     }
 
     @Override
     public String getPassword() {
-        return admin.getPassword();
+        if (admin != null) {
+            return admin.getPassword();
+        } else if (korisnik != null) {
+            return korisnik.getLozinka();
+        } else {
+            
+            return "Korisnik nije pronađen!"; // or throw an exception, or return a default value
+        }
     }
   
 
     @Override
     public String getUsername() {
-        return admin.getUsername();
+        if (admin != null) {
+            return admin.getUsername();
+        } else if (korisnik != null) {
+            return korisnik.getUsername();
+        } else {
+            
+            return "Korisnik nije pronađen!"; // or throw an exception, or return a default value
+        }
     }
 
     @Override
