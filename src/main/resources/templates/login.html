@@ -8,19 +8,21 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body class="logreg-body">
+<body class="">
     
-    <div class="container">
+    
         <!-- As a heading -->
-<nav class="navbar fixed-top navbar-light bg-light p-3">
-    <span class="navbar-brand mb-0 h1">e-Dnevnik</span>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+    <span class="navbar-brand">e-Dnevnik</span>
+</div>
   </nav>
         <!-- Alert message div -->
         <div class="alert alert-danger alert-message d-none" role="alert" id="alert-message" th:if="${param.error}">
             Pogrešan unos! Pokušajte ponovo.
         </div>
+<div class="container">
         <div class="login-form">
-            
             <h1 class="text-center mb-5">Prijava</h1>
             <form th:action="@{/login}" method="POST" role="form">
                 <div class="mb-3">
@@ -41,6 +43,7 @@
             </form>
         </div>
     </div>
+</div>
 
     <script>
         // Example to show the alert message (for testing purposes)
