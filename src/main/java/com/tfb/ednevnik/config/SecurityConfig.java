@@ -35,8 +35,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
         http.csrf(c -> c.disable())
-        .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard").hasAuthority("ADMIN").requestMatchers("/user-dashboard").hasAuthority("USER")
-        .requestMatchers("/registration", "/css/**").permitAll()
+        .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard", "/registration").hasAuthority("ADMIN")
+        .requestMatchers("/user-dashboard").hasAuthority("UCENIK")
+        .requestMatchers("/profesor-dashboard").hasAuthority("PROFESOR")
+        .requestMatchers("/css/**").permitAll()
         .anyRequest().authenticated())
 
         .formLogin(form -> form.loginPage("/login").permitAll().loginProcessingUrl("/login")
@@ -44,7 +46,7 @@ public class SecurityConfig {
 
         .logout(form -> form.invalidateHttpSession(true).clearAuthentication(true)
         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        .logoutSuccessUrl("/login?logut").permitAll());
+        .logoutSuccessUrl("/login?logout").permitAll());
         
         return http.build();
     }
