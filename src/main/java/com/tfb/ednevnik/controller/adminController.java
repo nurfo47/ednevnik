@@ -50,4 +50,8 @@ public class adminController {
     public String userDashboard(){
         return "user-dashboard";
     }
+    @GetMapping("/profesor-dashboard")
+    public String profesorDashboard(){
+        return "profesor-dashboard";
+    }
 }
