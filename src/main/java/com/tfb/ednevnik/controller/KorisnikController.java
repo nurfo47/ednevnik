@@ -1,12 +1,13 @@
 package com.tfb.ednevnik.controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
 //import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tfb.ednevnik.model.Korisnik;
 //import com.tfb.ednevnik.repository.korisnikRepository;
@@ -40,11 +41,18 @@ public class KorisnikController {
         return "korisnik-profil";
     }
 
-    @GetMapping("/toggleActivation/{id}")
-    public ResponseEntity<String> toggleActivation(@PathVariable Long id) {
+    @GetMapping("/toggleSActivation/{id}")
+    public String toggleSActivation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         korisnikService.toggleActivation(id);
-        return ResponseEntity.ok("Aktivnost korisničkog računa je uspješno promjenjena!");
+        redirectAttributes.addFlashAttribute("activationChanged", true);
+        return "redirect:/korisnici-ucenik";
     }
 
+    @GetMapping("/toggleTActivation/{id}")
+    public String toggleTActivation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        korisnikService.toggleActivation(id);
+        redirectAttributes.addFlashAttribute("activationChanged", true);
+        return "redirect:/korisnici-nastavnik";
+    }
     
 }
