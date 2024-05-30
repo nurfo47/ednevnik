@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RestController;
-
 //import com.tfb.ednevnik.admindto.adminDto;
 import com.tfb.ednevnik.admindto.korisnikDto;
 //import com.tfb.ednevnik.service.adminService;
