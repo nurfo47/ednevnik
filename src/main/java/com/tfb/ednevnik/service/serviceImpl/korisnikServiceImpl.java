@@ -1,6 +1,7 @@
 package com.tfb.ednevnik.service.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 import com.tfb.ednevnik.admindto.korisnikDto;
 import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.service.korisnikService;
+
+import jakarta.persistence.EntityNotFoundException;
+
 import com.tfb.ednevnik.repository.korisnikRepository;
 @Service
 public class korisnikServiceImpl implements korisnikService{
@@ -55,4 +59,18 @@ public class korisnikServiceImpl implements korisnikService{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateKorisnik'");
     }
-}
+
+
+    @Override
+    public void toggleActivation(Long id) {
+        Optional<Korisnik> optionalKorisnik = korisnikRepository.findById(id);
+        if (optionalKorisnik.isPresent()) {
+            Korisnik korisnik = optionalKorisnik.get();
+            korisnik.setActive(!korisnik.isActive()); // Promjeni status
+            korisnikRepository.save(korisnik); // Spremi
+        } else {
+            throw new EntityNotFoundException("Korisnik sa " + id + " nije pronađen");
+        }
+    }
+    }
+
