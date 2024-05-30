@@ -48,6 +48,8 @@ public class Korisnik {
     
     private String tip;    //Uloga korisnika ucenik, profesor, direktor
 
+    private boolean active;
+
 
     @ManyToOne
     @JoinColumn(name = "id_raz", nullable = true)
@@ -74,7 +76,7 @@ public class Korisnik {
     private Set<Razred> razredi = new HashSet<>();
 
     public Korisnik(String ime, String prezime, String email, String username, String lozinka, String mobitel,
-            String jmbg, LocalDate datum, String tip, Razred razred,
+            String jmbg, LocalDate datum, String tip, boolean active, Razred razred,
             Set<Razred> razredi, List<Izostanci> izostanciList, List<Predmet> predmetiList, List<Ocjene> ocjeneList) {
         this.ime = ime;
         this.prezime = prezime;
@@ -85,6 +87,7 @@ public class Korisnik {
         this.jmbg = jmbg;
         this.datum = datum;
         this.tip = tip;
+        this.active = active;
         this.razred = razred;
         this.razredi = razredi;
         this.izostanciList = izostanciList;
@@ -174,6 +177,13 @@ public class Korisnik {
 
     public void setTip(String tip) {
         this.tip = tip;
+    }
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public Razred getRazred() {
