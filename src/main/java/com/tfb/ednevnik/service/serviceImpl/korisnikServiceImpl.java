@@ -37,20 +37,17 @@ public class korisnikServiceImpl implements korisnikService{
 
     @Override
     public List<Korisnik> getAllKorisnik() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllKorisnik'");
+        return korisnikRepository.findAll();
     }
 
     @Override
     public Korisnik findKorisnikById(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findKorisnikById'");
+        return korisnikRepository.findById(id);
     }
 
     @Override
     public void deleteKorisnikById(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteKorisnikById'");
+        korisnikRepository.deleteById(id);
     }
 
     @Override
