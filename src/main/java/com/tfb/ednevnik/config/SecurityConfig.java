@@ -38,7 +38,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard", "/registration").hasAuthority("ADMIN")
         .requestMatchers("/user-dashboard").hasAuthority("UCENIK")
         .requestMatchers("/profesor-dashboard").hasAuthority("PROFESOR")
-        .requestMatchers("/css/**").permitAll()
+        .requestMatchers("/css/**","/javascript/**").permitAll()
         .anyRequest().authenticated())
 
         .formLogin(form -> form.loginPage("/login").permitAll().loginProcessingUrl("/login")
