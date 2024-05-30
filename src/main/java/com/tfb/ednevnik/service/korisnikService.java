@@ -11,4 +11,6 @@ public interface korisnikService {
     Korisnik findKorisnikById(long id);
     void deleteKorisnikById(long id);
     Korisnik updateKorisnik(Korisnik korisnik);
+    
+    void toggleActivation(Long id);
 }
