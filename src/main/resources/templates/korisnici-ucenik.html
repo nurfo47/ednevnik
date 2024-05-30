@@ -48,9 +48,8 @@
                         <th>Ime</th>
                         <th>Prezime</th>
                         <th>Email</th>
-                        <th>JMBG</th>
-                        <th>Datum</th>
                         <th>Mobitel</th>
+                        <th>Aktiviraj</th>
                         <th>Razred</th>
                     </tr>
                 </thead>
@@ -59,9 +58,14 @@
                         <td th:text="${korisnik.ime}"></td>
                         <td th:text="${korisnik.prezime}"></td>
                         <td th:text="${korisnik.email}"></td>
-                        <td th:text="${korisnik.jmbg}"></td>
-                        <td th:text="${korisnik.datum}"></td>
                         <td th:text="${korisnik.mobitel}"></td>
+                        <td><div class="mt-auto">
+                            <a th:href="@{/toggleActivation/{id}(id=${korisnik.id})}"
+                               class="btn btn-sm" th:class="${korisnik.active} ? 'btn-danger' : 'btn-success'">
+                               <span th:text="${korisnik.active ? 'Deaktiviraj' : 'Aktiviraj'}"></span>
+                            </a>
+                        </div>
+                    </td>
                         <!--<td th:text="${korisnik.razred.naziv}"></td>-->
                     </tr>
                 </tbody>
