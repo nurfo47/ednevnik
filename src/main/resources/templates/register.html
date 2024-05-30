@@ -14,13 +14,16 @@
             <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">e-Dnevnik</a>
+        <a class="navbar-brand" th:href="@{/admin-dashboard}">e-Dnevnik</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0"> <!-- Promijenjeno: ms-auto umjesto me-auto -->
-                <!-- Add your other navbar items here -->
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin-dashboard}">POČETNA</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/korisnici}">KORISNICI</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">RAZREDI</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">PREDMETI</a></li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
@@ -46,7 +49,7 @@
             </div>
 <div class="container"> 
             <div class="registration-form">
-                <h2 class="text-center mb-3">Registracija</h2>
+                <h2 class="text-center mb-4">REGISTRACIJA KORISNIKA</h2>
                 <form th:action="@{/admin-dashboard/registration}" method="post" role="form" th:object="${korisnik}">
                     <div class="form-group mb-3">
                         <label for="ime">Ime</label>
@@ -81,7 +84,7 @@
                         <input type="date" class="form-control" id="datum" name="datum" required>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="role">Uloga</label>
+                        <label for="role">ULOGA PROFILA</label>
                         <select class="form-control" id="tip" name="tip" required>
                             <option value="PROFESOR">Profesor</option>
                             <option value="UCENIK">Učenik</option>
