@@ -1,6 +1,7 @@
 package com.tfb.ednevnik.service.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,9 +28,13 @@ public class CustomUserDetailsService implements UserDetailsService{
         if (admin != null) {
             return new CustomUserDetail(admin, null);
         } else if (korisnik != null) {
+            if (!korisnik.isActive()) {
+                throw new DisabledException("Korisnički račun je deaktiviran!");
+            }
             return new CustomUserDetail(null, korisnik);
         } else {
             throw new UsernameNotFoundException("Korisnik nije pronađen: " + username);
         }
+        
     }
 }
