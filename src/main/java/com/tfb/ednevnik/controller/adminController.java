@@ -33,14 +33,14 @@ public class adminController {
     public String saveKorisnik(@ModelAttribute("korisnik") korisnikDto korisnikDto, Model model){
         korisnikService.saveKorisnik(korisnikDto);
         model.addAttribute("message", "Registracija uspjesna");
-        return "redirect:/register?success";
+        return "redirect:/admin-dashboard?success";
     }
 
     @GetMapping("/login")
     public String login(){
         return "login";
     }
-
+    
     @GetMapping("/admin-dashboard")
     public String adminDashboard(){
         return "admin-dashboard";
@@ -53,5 +53,10 @@ public class adminController {
     @GetMapping("/profesor-dashboard")
     public String profesorDashboard(){
         return "profesor-dashboard";
+    }
+
+    @GetMapping("/korisnici")
+    public String pregledKorisnika(){
+        return "korisnici";
     }
 }
