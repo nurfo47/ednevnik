@@ -22,7 +22,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
         if (roles.orElse("").equals("ADMIN")){
             response.sendRedirect("/admin-dashboard");
-        } else if (roles.orElse("").equals("PROFESOR")){
+        } else if (roles.orElse("").equals("NASTAVNIK")){
             response.sendRedirect("/profesor-dashboard");
         } else if (roles.orElse("").equals("UCENIK")){
             response.sendRedirect("/user-dashboard"); 
