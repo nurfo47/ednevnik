@@ -59,6 +59,10 @@ public class Razred {
         this.predmeti = predmeti;
     }
 
+    public Razred(){
+        
+    }
+
     public long getId() {
         return id;
     }
