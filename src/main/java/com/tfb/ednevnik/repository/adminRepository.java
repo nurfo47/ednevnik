@@ -7,8 +7,10 @@ import com.tfb.ednevnik.model.admin;
 
 
 
+
 @Repository
 public interface adminRepository extends JpaRepository<admin, Long> {
     admin findByEmail(String email);
     admin findByUsername(String username);
+    admin findById(long id);
 }
