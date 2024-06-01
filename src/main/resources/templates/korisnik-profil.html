@@ -23,7 +23,7 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin-dashboard}"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">POČETNA</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/korisnici}"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}" >KORISNICI</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/razredi}"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">RAZREDI</a></li>
+                <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item"><a class="nav-link" th:href="@{/razredi}"  >RAZREDI</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">PREDMETI</a></li>
             </ul>
             <ul class="navbar-nav">
@@ -74,8 +74,14 @@
                 <p><b>ADRESA: </b><span ></span></p>
 
                 <!--<p>Razred: <span th:text="${korisnik.razred.naziv}"></span></p>-->
-                <div class="mt-auto">
+                <div th:if="${korisnik.tip == 'NASTAVNIK'}" class="mt-auto">
                     <a th:href="@{/uredi}" class="btn btn-dark float-end">UREDI KORISNIKA</a>
+                </div>
+                <div th:if="${korisnik.tip == 'UCENIK'}" class="mt-auto">
+                    <a th:href="@{/uredi}" class="btn btn-dark float-end">UREDI KORISNIKA</a>
+                </div>
+                <div class="mt-auto">
+                    <a th:href="@{/edit/{id}(id=${korisnik.id})}" class="btn btn-dark float-end">UREDI KORISNIKA</a>
                 </div>
             </div>
         </div>
