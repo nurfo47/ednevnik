@@ -72,5 +72,20 @@ public class korisnikServiceImpl implements korisnikService{
             throw new EntityNotFoundException("Korisnik sa " + id + " nije pronađen");
         }
     }
+
+    @Override
+    public Korisnik findKorisnikByEmail(String email) {
+        return korisnikRepository.findByEmail(email);
+    }
+
+    @Override
+    public Korisnik findKorisnikByUsername(String username) {
+        return korisnikRepository.findByUsername(username);
+    }
+
+    @Override
+    public Korisnik save(Korisnik korisnik) {
+        return korisnikRepository.save(korisnik);
+    }
     }
 
