@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 //import org.springframework.web.bind.annotation.RestController;
 //import com.tfb.ednevnik.admindto.adminDto;
 import com.tfb.ednevnik.admindto.korisnikDto;
+
 //import com.tfb.ednevnik.service.adminService;
 import com.tfb.ednevnik.service.korisnikService;
+
 
 
 
@@ -43,15 +45,6 @@ public class adminController {
     @GetMapping("/admin-dashboard")
     public String adminDashboard(){
         return "admin-dashboard";
-    }
-
-    @GetMapping("/user-dashboard")
-    public String userDashboard(){
-        return "user-dashboard";
-    }
-    @GetMapping("/profesor-dashboard")
-    public String profesorDashboard(){
-        return "profesor-dashboard";
     }
 
     @GetMapping("/korisnici")
