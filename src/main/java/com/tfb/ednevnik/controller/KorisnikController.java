@@ -1,4 +1,6 @@
 package com.tfb.ednevnik.controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,9 +14,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Razred;
+import com.tfb.ednevnik.model.admin;
+import com.tfb.ednevnik.service.adminService;
 import com.tfb.ednevnik.service.korisnikService;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -22,6 +29,8 @@ public class KorisnikController {
     
     @Autowired
     private korisnikService korisnikService;
+    @Autowired
+    private adminService adminService;
     //list Ucenici
     @GetMapping("/korisnici-ucenik")
     public String listKorisnici(Model model) {
@@ -40,7 +49,9 @@ public class KorisnikController {
     @GetMapping("/korisnik-profil/{id}")
     public String getUserProfile(@PathVariable Long id, Model model) {
         Korisnik korisnik = korisnikService.findKorisnikById(id);
+        admin admin = adminService.findById(id);
         model.addAttribute("korisnik", korisnik);
+        model.addAttribute("admin", admin);
         return "korisnik-profil";
     }
 
@@ -149,4 +160,19 @@ public class KorisnikController {
     return "redirect:/login";
     
 }
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id")Long id, Model model){
+        Korisnik korisnik = korisnikService.findKorisnikById(id);
+        List<Razred> razredi = korisnikService.getAllRazredi();
+        model.addAttribute("korisnik", korisnik);
+        model.addAttribute("razredi", razredi);
+        return "update-korisnik";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateKorisnik(@PathVariable("id") Long id, @RequestParam("razredId") Long razredId, RedirectAttributes redirectAttributes) {
+        korisnikService.updateKorisnikAndRazred(id, razredId);
+        redirectAttributes.addFlashAttribute("message", "Uspješno izmjenjeno");
+        return "redirect:/korisnici";
+    }
 }
