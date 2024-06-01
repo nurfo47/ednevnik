@@ -1,18 +1,21 @@
 package com.tfb.ednevnik.controller;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.tfb.ednevnik.model.Korisnik;
-//import com.tfb.ednevnik.repository.korisnikRepository;
 import com.tfb.ednevnik.service.korisnikService;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+
 
 @Controller
 public class KorisnikController {
@@ -41,6 +44,46 @@ public class KorisnikController {
         return "korisnik-profil";
     }
 
+    @GetMapping("/profesor-dashboard")
+    public String profesorDashboard(Model model){
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null) {
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            String authenticatedEmail = userDetails.getUsername();
+            Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedEmail);
+            if (korisnik != null) {
+                model.addAttribute("korisnik", korisnik);
+            } else {
+                // Handle user not found case
+                System.out.println("User not found with username: " + authenticatedEmail);
+            }
+        }
+    }
+        return "profesor-dashboard";
+    }
+
+    @GetMapping("/user-dashboard")
+    public String userDashboard(Model model){
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null) {
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            String authenticatedEmail = userDetails.getUsername();
+            Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedEmail);
+            if (korisnik != null) {
+                model.addAttribute("korisnik", korisnik);
+            } else {
+                // Handle user not found case
+                System.out.println("User not found with username: " + authenticatedEmail);
+            }
+        }
+    }
+        return "user-dashboard";
+    }
+
     @GetMapping("/toggleSActivation/{id}")
     public String toggleSActivation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         korisnikService.toggleActivation(id);
@@ -54,5 +97,56 @@ public class KorisnikController {
         redirectAttributes.addFlashAttribute("activationChanged", true);
         return "redirect:/korisnici-nastavnik";
     }
+
+    @GetMapping("/uredi")
+    public String editUserForm(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication != null && authentication.getPrincipal() instanceof UserDetails){
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String authenticatedEmail = userDetails.getUsername();
+            Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedEmail);
+
+            if (korisnik != null){
+                model.addAttribute("korisnik", korisnik);
+                return "uredi-korisnik";
+            }
+
+
+        }
+        return "redirect:/korisnik-profil";
+    }
+
+    @SuppressWarnings("deprecation")
+    @PostMapping("/uredi-korisnik/{id}")
+    public String updateUser(@PathVariable Long id, @ModelAttribute("korisnik") Korisnik updateKorisnik){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.getPrincipal() instanceof UserDetails){
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String authenticatedUsername = userDetails.getUsername();
+
+            Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedUsername);
+            Korisnik korisnikToUpdate = korisnikService.findKorisnikById(id);
+
+            if (korisnik.getId() == korisnikToUpdate.getId()){
+                //Update user profile information
+                korisnikToUpdate.setEmail(updateKorisnik.getEmail());
+                korisnikToUpdate.setMobitel(updateKorisnik.getMobitel());
+                //Update password if new password is provided
+                String novaLozinka = korisnikToUpdate.getLozinka();
+                if (!StringUtils.isEmpty(novaLozinka)){
+                    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+                    String encodedPassword = passwordEncoder.encode(novaLozinka);
+                    korisnikToUpdate.setLozinka(encodedPassword);
+                }
+                korisnikService.save(korisnikToUpdate);
+                return "redirect:/korisnik-profil/" + korisnik.getId();
+
+            }else {
+                return "redirect:/error";
+            }
+    }
+    return "redirect:/login";
     
+}
 }
