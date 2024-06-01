@@ -27,6 +27,10 @@ public class adminServiceImpl implements adminService {
         admin.setRole(adminDto.getRole());
         adminRepository.save(admin);
     }
+    @Override
+    public admin findById(long id) {
+        return adminRepository.findById(id);
+    }
  
 
 
