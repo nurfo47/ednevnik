@@ -9,16 +9,26 @@ import org.springframework.stereotype.Service;
 
 import com.tfb.ednevnik.admindto.korisnikDto;
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Razred;
 import com.tfb.ednevnik.service.korisnikService;
 
 import jakarta.persistence.EntityNotFoundException;
 
 import com.tfb.ednevnik.repository.korisnikRepository;
+import com.tfb.ednevnik.repository.razredRepository;
 @Service
 public class korisnikServiceImpl implements korisnikService{
     
     @Autowired
     private korisnikRepository korisnikRepository;
+    @Autowired
+    private razredRepository razredRepository;
+
+    
+    public korisnikServiceImpl(korisnikRepository korisnikRepository, razredRepository razredRepository) {
+        this.korisnikRepository = korisnikRepository;
+        this.razredRepository = razredRepository;
+    }
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -86,6 +96,19 @@ public class korisnikServiceImpl implements korisnikService{
     @Override
     public Korisnik save(Korisnik korisnik) {
         return korisnikRepository.save(korisnik);
+    }
+
+    @Override
+    public void updateKorisnikAndRazred(long korisnikId, long razredId) {
+        Korisnik korisnik = korisnikRepository.findById(korisnikId);
+        Razred razred = razredRepository.getById(razredId);
+        korisnik.setRazred(razred);
+        korisnikRepository.save(korisnik);
+    }
+
+    @Override
+    public List<Razred> getAllRazredi() {
+        return razredRepository.findAll();
     }
     }
 
