@@ -25,7 +25,7 @@
                         <span style="font-size: small;" sec:authentication="principal.username"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                        <li><a class="dropdown-item" href="#">Uredi profil</a></li>
+                        <li><a class="dropdown-item" th:href="@{/korisnik-profil/{id}(id=${korisnik.id})}">Moj profil</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Odjava</a></li>
                     </ul>
                 </li>
