@@ -22,7 +22,7 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="nav-link" th:href="@{/admin-dashboard}">POČETNA</a></li>
                 <li class="nav-item" th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a class="nav-link" th:href="@{/korisnici}">KORISNICI</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">RAZREDI</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/razredi}">RAZREDI</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">PREDMETI</a></li>
             </ul>
             <ul class="navbar-nav">

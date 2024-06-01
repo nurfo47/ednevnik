@@ -23,7 +23,7 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin-dashboard}"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">POČETNA</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/korisnici}"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}" >KORISNICI</a></li>
-                <li class="nav-item"><a class="nav-link" href="#"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">RAZREDI</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/razredi}"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">RAZREDI</a></li>
                 <li class="nav-item"><a class="nav-link" href="#"  th:if="${#authorization.expression('hasRole(''ADMIN'')')}">PREDMETI</a></li>
             </ul>
             <ul class="navbar-nav">
