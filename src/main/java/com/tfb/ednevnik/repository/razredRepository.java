@@ -10,5 +10,6 @@ import com.tfb.ednevnik.model.Razred;
 
 @Repository
 public interface razredRepository extends JpaRepository<Razred, Long>{
-    Optional<Razred> findById(long id);
+        Optional<Razred> findById(long id);
+        Razred getById(long id);
 }
