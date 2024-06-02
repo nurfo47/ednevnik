@@ -170,4 +170,12 @@ public class KorisnikController {
         redirectAttributes.addFlashAttribute("message", "Uspješno izmjenjeno");
         return "redirect:/korisnici";
     }
+
+    //Get all users which are in same class
+    @GetMapping("/razred/{id}/ucenici")
+    public String getKorisniciByRazred(@PathVariable Long id, Model model) {
+        List<Korisnik> korisnici = korisnikService.getKorisniciByRazred(id);
+        model.addAttribute("korisnici", korisnici);
+        return "ucenici-razreda";
+    }
 }
