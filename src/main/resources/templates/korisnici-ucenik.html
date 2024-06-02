@@ -49,8 +49,9 @@
                         <th>Prezime</th>
                         <th>Email</th>
                         <th>Mobitel</th>
-                        <th>Profil</th>
                         <th>Razred</th>
+                        <th>Profil</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +60,7 @@
                         <td th:text="${korisnik.prezime}"></td>
                         <td th:text="${korisnik.email}"></td>
                         <td th:text="${korisnik.mobitel}"></td>
+                        <td th:text="${#strings.defaultString(korisnik.razred?.naziv, 'null')}"></td>
                         <td>
                             <div class="mt-auto" >
                                 <a th:href="@{/toggleSActivation/{id}(id=${korisnik.id})}" 
@@ -69,7 +71,7 @@
                                 </a>
                             </div>
                     </td>
-                        <td th:text="${#strings.defaultString(korisnik.razred?.naziv, 'null')}"></td>
+                        
                     </tr>
                 </tbody>
             </table>
