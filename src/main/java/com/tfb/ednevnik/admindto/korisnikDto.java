@@ -13,9 +13,10 @@ public class korisnikDto {
     private String jmbg;
     private LocalDate datum;
     private String tip;    //Uloga korisnika ucenik, profesor, direktor
+    private Long razredId;
     
     public korisnikDto(String ime, String prezime, String email, String username, String lozinka, String mobitel,
-            String jmbg, LocalDate datum, String tip) {
+            String jmbg, LocalDate datum, String tip, Long razredId) {
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
@@ -25,6 +26,10 @@ public class korisnikDto {
         this.jmbg = jmbg;
         this.datum = datum;
         this.tip = tip;
+        this.razredId = razredId;
+    }
+    public korisnikDto(){
+        
     }
     public String getIme() {
         return ime;
@@ -79,6 +84,13 @@ public class korisnikDto {
     }
     public void setTip(String tip) {
         this.tip = tip;
+    }
+
+    public Long getRazredId() {
+        return razredId;
+    }
+    public void setRazredId(Long razredId) {
+        this.razredId = razredId;
     }
 
 
