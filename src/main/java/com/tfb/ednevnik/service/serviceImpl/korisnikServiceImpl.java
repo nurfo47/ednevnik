@@ -110,5 +110,10 @@ public class korisnikServiceImpl implements korisnikService{
     public List<Razred> getAllRazredi() {
         return razredRepository.findAll();
     }
+
+    @Override
+    public List<Korisnik> getKorisniciByRazred(Long razredId) {
+        return korisnikRepository.findByRazredId(razredId);
+    }
     }
 
