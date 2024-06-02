@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="razred : ${razred}">
+                    <tr th:each="razred : ${razred}" th:onclick="|redirectToUceniciList(${razred.id})|">
                         <td th:text="${razred.naziv}"></td>
                         <td th:text="${razred.skolskaGodina}"></td>
                     </tr>
