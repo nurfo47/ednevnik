@@ -9,6 +9,7 @@ import com.tfb.ednevnik.model.Razred;
 public interface korisnikService {
     List<Korisnik> getAllKorisnik();
     List<Razred> getAllRazredi();
+    List<Korisnik> getKorisniciByRazred(Long razredId);
     void saveKorisnik(korisnikDto korisnikDto);
     Korisnik findKorisnikById(long id);
     void deleteKorisnikById(long id);
