@@ -23,7 +23,7 @@
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin-dashboard}">POČETNA</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/korisnici}">KORISNICI</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/razredi}">RAZREDI</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">PREDMETI</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/predmeti}">PREDMETI</a></li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
@@ -42,6 +42,9 @@
        <!-- Dashboard Content -->
     <div class="container mt-5">
         <div class="row">
+            <div class="mt-auto">
+                <a th:href="@{/add-razred}" class="btn btn-light btn-outline-dark float-end">DODAJ</a>
+            </div>
             <table>
                 <thead>
                     <tr>
