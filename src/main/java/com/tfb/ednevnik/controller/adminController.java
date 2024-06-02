@@ -13,6 +13,7 @@ import com.tfb.ednevnik.admindto.korisnikDto;
 
 //import com.tfb.ednevnik.service.adminService;
 import com.tfb.ednevnik.service.korisnikService;
+import com.tfb.ednevnik.service.razredService;
 
 
 
@@ -24,9 +25,13 @@ public class adminController {
 
     @Autowired
     private korisnikService korisnikService;
+    @Autowired
+    private razredService razredService;
 
     @GetMapping("/registration")
-    public String getRegistrationPage() {
+    public String getRegistrationPage(Model model) {
+        model.addAttribute("korisnik", new korisnikDto());
+        model.addAttribute("razredi", razredService.getAllRazred());
         return "register";
     }
 
