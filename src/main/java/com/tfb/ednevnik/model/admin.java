@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="admin")
-public class admin {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,13 +26,13 @@ public class admin {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "`role`", nullable = false)
     private String role;
 
-    public admin(){
+    public Admin(){
         
     }
-    public admin(String username, String password, String email, String role) {
+    public Admin(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
