@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tfb.ednevnik.admindto.adminDto;
-import com.tfb.ednevnik.model.admin;
+import com.tfb.ednevnik.model.Admin;
 import com.tfb.ednevnik.repository.adminRepository;
 
 import com.tfb.ednevnik.service.adminService;
@@ -20,7 +20,7 @@ public class adminServiceImpl implements adminService {
     private PasswordEncoder passwordEncoder;
     @Override
     public void save(adminDto adminDto) {
-        admin admin = new admin();
+        Admin admin = new Admin();
         admin.setUsername(adminDto.getUsername());
         admin.setEmail(adminDto.getEmail());
         admin.setPassword(passwordEncoder.encode(adminDto.getPassword()));
@@ -28,7 +28,7 @@ public class adminServiceImpl implements adminService {
         adminRepository.save(admin);
     }
     @Override
-    public admin findById(long id) {
+    public Admin findById(long id) {
         return adminRepository.findById(id);
     }
  
