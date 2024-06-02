@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.model.Razred;
-import com.tfb.ednevnik.model.admin;
-import com.tfb.ednevnik.service.adminService;
 import com.tfb.ednevnik.service.korisnikService;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -29,8 +27,7 @@ public class KorisnikController {
     
     @Autowired
     private korisnikService korisnikService;
-    @Autowired
-    private adminService adminService;
+    
     //list Ucenici
     @GetMapping("/korisnici-ucenik")
     public String listKorisnici(Model model) {
@@ -49,9 +46,7 @@ public class KorisnikController {
     @GetMapping("/korisnik-profil/{id}")
     public String getUserProfile(@PathVariable Long id, Model model) {
         Korisnik korisnik = korisnikService.findKorisnikById(id);
-        admin admin = adminService.findById(id);
         model.addAttribute("korisnik", korisnik);
-        model.addAttribute("admin", admin);
         return "korisnik-profil";
     }
 
@@ -144,7 +139,7 @@ public class KorisnikController {
                 korisnikToUpdate.setEmail(updateKorisnik.getEmail());
                 korisnikToUpdate.setMobitel(updateKorisnik.getMobitel());
                 //Update password if new password is provided
-                String novaLozinka = korisnikToUpdate.getLozinka();
+                String novaLozinka = updateKorisnik.getLozinka();
                 if (!StringUtils.isEmpty(novaLozinka)){
                     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
                     String encodedPassword = passwordEncoder.encode(novaLozinka);
