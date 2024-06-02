@@ -41,6 +41,10 @@ public class Predmet {
         this.ocjeneList = ocjeneList;
     }
 
+    public Predmet(){
+        
+    }
+
     public long getId() {
         return id;
     }
