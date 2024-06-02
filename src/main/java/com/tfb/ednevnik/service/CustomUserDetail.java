@@ -7,15 +7,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.tfb.ednevnik.model.Korisnik;
-import com.tfb.ednevnik.model.admin;
+import com.tfb.ednevnik.model.Admin;
 
 public class CustomUserDetail implements UserDetails{
 
-    private admin admin;
+    private Admin admin;
     private Korisnik korisnik;
 
     
-    public CustomUserDetail(admin admin, Korisnik korisnik) {
+    public CustomUserDetail(Admin admin, Korisnik korisnik) {
         this.admin = admin;
         this.korisnik = korisnik;
     }
