@@ -80,8 +80,8 @@
                 <p><b>ADRESA: </b><span ></span></p>
 
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>RAZRED: </b><span th:text="${#strings.defaultString(korisnik.razred?.naziv, 'null')}"></span></p>
-               <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="mt-auto">
-                    <a th:href="@{/edit/{id}(id=${korisnik.id})}" class="btn btn-dark float-end">UREDI KORISNIKA</a>
+               <div  class="mt-auto">
+                    <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/edit/{id}(id=${korisnik.id})}" class="btn btn-dark float-end">UREDI KORISNIKA</a>
                 </div>
             </div>
         </div>
