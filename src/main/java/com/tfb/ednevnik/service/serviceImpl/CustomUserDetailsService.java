@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.tfb.ednevnik.service.CustomUserDetail;
 import com.tfb.ednevnik.model.Korisnik;
-import com.tfb.ednevnik.model.admin;
+import com.tfb.ednevnik.model.Admin;
 import com.tfb.ednevnik.repository.adminRepository;
 import com.tfb.ednevnik.repository.korisnikRepository;
 
@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        admin admin = adminRepository.findByUsername(username);
+        Admin admin = adminRepository.findByUsername(username);
         Korisnik korisnik = korisnikRepository.findByUsername(username);
 
         if (admin != null) {
