@@ -20,11 +20,11 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         var authourities = authentication.getAuthorities();
         var roles = authourities.stream().map(r -> r.getAuthority()).findFirst();
 
-        if (roles.orElse("").equals("ADMIN")){
+        if (roles.orElse("").equals("ROLE_ADMIN")){
             response.sendRedirect("/admin-dashboard");
-        } else if (roles.orElse("").equals("NASTAVNIK")){
+        } else if (roles.orElse("").equals("ROLE_NASTAVNIK")){
             response.sendRedirect("/profesor-dashboard");
-        } else if (roles.orElse("").equals("UCENIK")){
+        } else if (roles.orElse("").equals("ROLE_UCENIK")){
             response.sendRedirect("/user-dashboard"); 
         } else {
             response.sendRedirect("/error");
