@@ -45,6 +45,10 @@ public class korisnikServiceImpl implements korisnikService{
         korisnik.setDatum(korisnikDto.getDatum());
         korisnik.setJmbg(korisnikDto.getJmbg());
         korisnik.setTip(korisnikDto.getTip());
+        if (korisnikDto.getRazredId() != null) {
+            Razred razred = razredRepository.findById(korisnikDto.getRazredId()).orElse(null);
+            korisnik.setRazred(razred);
+        }
         korisnikRepository.save(korisnik);
 
 }
