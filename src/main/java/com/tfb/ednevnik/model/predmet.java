@@ -1,6 +1,8 @@
 package com.tfb.ednevnik.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -8,9 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 @Entity
@@ -25,16 +25,15 @@ public class Predmet {
     @ManyToMany(mappedBy = "predmeti")
     private List<Razred> razredi;
 
-    @ManyToOne
-    @JoinColumn(name = "id_kor", nullable = true)
-    private Korisnik korisnik;
+    @ManyToMany(mappedBy = "predmeti")
+    private Set<Korisnik> korisnik = new HashSet<>();
 
     //One to many for table ocjene
     @OneToMany(mappedBy = "predmet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ocjene> ocjeneList;
 
-    public Predmet(String naziv, List<Razred> razredi, com.tfb.ednevnik.model.Korisnik korisnik,
-            List<Ocjene> ocjeneList) {
+    public Predmet(String naziv, List<Razred> razredi, Set<Korisnik> korisnik,
+        List<Ocjene> ocjeneList) {
         this.naziv = naziv;
         this.razredi = razredi;
         this.korisnik = korisnik;
@@ -69,11 +68,11 @@ public class Predmet {
         this.razredi = razredi;
     }
 
-    public Korisnik getKorisnik() {
+    public Set<Korisnik> getKorisnik() {
         return korisnik;
     }
 
-    public void setKorisnik(Korisnik korisnik) {
+    public void setKorisnik(Set<Korisnik> korisnik) {
         this.korisnik = korisnik;
     }
 

@@ -59,9 +59,13 @@ public class Korisnik {
     @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Izostanci> izostanciList;
 
-    //One to many for table predmet
-    @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Predmet> predmetiList;
+    //Many to Many with Predmet
+    @ManyToMany
+    @JoinTable(
+        name = "korisnik_predmet", 
+        joinColumns = @JoinColumn(name = "korisnik_id"), 
+        inverseJoinColumns = @JoinColumn(name = "predmet_id"))
+    private Set<Predmet> predmeti = new HashSet<>();
 
     //One to many for table ocjene
     @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -77,7 +81,7 @@ public class Korisnik {
 
     public Korisnik(String ime, String prezime, String email, String username, String lozinka, String mobitel,
             String jmbg, LocalDate datum, String tip, boolean active, Razred razred,
-            Set<Razred> razredi, List<Izostanci> izostanciList, List<Predmet> predmetiList, List<Ocjene> ocjeneList) {
+            Set<Razred> razredi, List<Izostanci> izostanciList, Set<Predmet> predmeti, List<Ocjene> ocjeneList) {
         this.ime = ime;
         this.prezime = prezime;
         this.email = email;
@@ -91,7 +95,7 @@ public class Korisnik {
         this.razred = razred;
         this.razredi = razredi;
         this.izostanciList = izostanciList;
-        this.predmetiList = predmetiList;
+        this.predmeti = predmeti;
         this.ocjeneList = ocjeneList;
     }
 
@@ -210,12 +214,12 @@ public class Korisnik {
         this.izostanciList = izostanciList;
     }
     
-    public List<Predmet> getPredmetiList() {
-        return predmetiList;
+    public Set<Predmet> getPredmeti() {
+        return predmeti;
     }
     
-    public void setPredmetiList(List<Predmet> predmetiList) {
-        this.predmetiList = predmetiList;
+    public void setPredmeti(Set<Predmet> predmeti) {
+        this.predmeti = predmeti;
     }
     
     public List<Ocjene> getOcjeneList() {
