@@ -137,5 +137,10 @@ public class korisnikServiceImpl implements korisnikService{
         korisnik.setPredmeti(new HashSet<>(predmeti));
         korisnikRepository.save(korisnik);
     }
+
+    @Override
+    public List<Korisnik> findByPredmet(Predmet predmet) {
+        return korisnikRepository.findByPredmeti(predmet);
+    }
     }
 
