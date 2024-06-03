@@ -1,20 +1,23 @@
 package com.tfb.ednevnik.service.serviceImpl;
-
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.tfb.ednevnik.admindto.korisnikDto;
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Predmet;
 import com.tfb.ednevnik.model.Razred;
 import com.tfb.ednevnik.service.korisnikService;
 
 import jakarta.persistence.EntityNotFoundException;
 
 import com.tfb.ednevnik.repository.korisnikRepository;
+import com.tfb.ednevnik.repository.predmetRepository;
 import com.tfb.ednevnik.repository.razredRepository;
 @Service
 public class korisnikServiceImpl implements korisnikService{
@@ -23,6 +26,8 @@ public class korisnikServiceImpl implements korisnikService{
     private korisnikRepository korisnikRepository;
     @Autowired
     private razredRepository razredRepository;
+    @Autowired
+    private predmetRepository predmetRepository;
 
     
     public korisnikServiceImpl(korisnikRepository korisnikRepository, razredRepository razredRepository) {
@@ -118,6 +123,19 @@ public class korisnikServiceImpl implements korisnikService{
     @Override
     public List<Korisnik> getKorisniciByRazred(Long razredId) {
         return korisnikRepository.findByRazredId(razredId);
+    }
+
+    @Override
+    public List<Korisnik> findByTip(String tip) {
+        return korisnikRepository.findByTip(tip);
+    }
+
+    @Override
+    public void assignPredmetiToKorisnik(Long korisnikId, List<Long> predmetId) {
+        Korisnik korisnik = korisnikRepository.findById(korisnikId).orElseThrow();
+        List<Predmet> predmeti = predmetRepository.findAllById(predmetId);
+        korisnik.setPredmeti(new HashSet<>(predmeti));
+        korisnikRepository.save(korisnik);
     }
     }
 
