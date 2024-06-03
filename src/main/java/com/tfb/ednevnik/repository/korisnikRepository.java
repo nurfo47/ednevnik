@@ -13,7 +13,10 @@ public interface korisnikRepository extends JpaRepository<Korisnik, Long>{
     Korisnik findById(long id);
     Korisnik findByUsername(String username);
     Korisnik findByJmbg(String jmbg);
-    Korisnik findByTip(String tip);
+    List<Korisnik> findByTip(String tip);
     Korisnik findByEmail(String email);
     List<Korisnik> findByRazredId(Long id);
+    @SuppressWarnings("null")
+    List<Korisnik> findAllById(@SuppressWarnings("null") Iterable<Long> ids);
+    
 }
