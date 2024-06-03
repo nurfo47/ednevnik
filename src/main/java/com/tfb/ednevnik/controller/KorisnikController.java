@@ -1,6 +1,5 @@
 package com.tfb.ednevnik.controller;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,8 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Predmet;
 import com.tfb.ednevnik.model.Razred;
+
 import com.tfb.ednevnik.service.korisnikService;
+import com.tfb.ednevnik.service.predmetService;
+
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,8 @@ public class KorisnikController {
     
     @Autowired
     private korisnikService korisnikService;
+    @Autowired
+    private predmetService predmetService;
     
     //list Ucenici
     @GetMapping("/korisnici-ucenik")
@@ -177,5 +182,20 @@ public class KorisnikController {
         List<Korisnik> korisnici = korisnikService.getKorisniciByRazred(id);
         model.addAttribute("korisnici", korisnici);
         return "ucenici-razreda";
+    }
+
+    //Assign Predmet to Nastavnik
+    @GetMapping("/assign-predmeti")
+    public String showAssignPredmetiForm(Model model) {
+        List<Korisnik> nastavnici = korisnikService.getAllKorisnik(); // Get all Korisnici
+        List<Predmet> predmeti = predmetService.getAllPredmet(); // Get all Predmeti
+        model.addAttribute("korisnici", nastavnici);
+        model.addAttribute("predmeti", predmeti);
+        return "assign-predmeti"; // Return the HTML form
+}
+    @PostMapping("/korisnici-nastavnik/assign-predmeti")
+    public String assignPredmetiToKorisnik(@RequestParam Long korisnikId, @RequestParam List<Long> predmetId) {
+        korisnikService.assignPredmetiToKorisnik(korisnikId, predmetId); // Call the service method to handle the assignment
+        return "redirect:/korisnici-nastavnik";
     }
 }
