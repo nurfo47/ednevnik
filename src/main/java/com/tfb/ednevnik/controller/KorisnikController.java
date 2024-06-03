@@ -18,6 +18,7 @@ import com.tfb.ednevnik.model.Razred;
 
 import com.tfb.ednevnik.service.korisnikService;
 import com.tfb.ednevnik.service.predmetService;
+import com.tfb.ednevnik.service.razredService;
 
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -32,6 +33,8 @@ public class KorisnikController {
     private korisnikService korisnikService;
     @Autowired
     private predmetService predmetService;
+    @Autowired
+    private razredService razredService;
     
     //list Ucenici
     @GetMapping("/korisnici-ucenik")
@@ -180,7 +183,9 @@ public class KorisnikController {
     @GetMapping("/razred/{id}/ucenici")
     public String getKorisniciByRazred(@PathVariable Long id, Model model) {
         List<Korisnik> korisnici = korisnikService.getKorisniciByRazred(id);
+        List<Razred> razredi = razredService.getAllRazred();
         model.addAttribute("korisnici", korisnici);
+        model.addAttribute("razredi", razredi);
         return "ucenici-razreda";
     }
 
@@ -198,4 +203,19 @@ public class KorisnikController {
         korisnikService.assignPredmetiToKorisnik(korisnikId, predmetId); // Call the service method to handle the assignment
         return "redirect:/korisnici-nastavnik";
     }
+
+    //List all users who have assigned selected subject
+    @GetMapping("/predmeti/{predmetId}/korisnici")
+    public String listKorisniciForPredmet(@PathVariable Long predmetId, Model model) {
+        // Retrieve the Predmet by its ID
+        Predmet predmet = predmetService.getPredmetById(predmetId);
+        // Get the list of Korisnici who teach the selected Predmet
+        List<Korisnik> korisnici = korisnikService.findByPredmet(predmet);
+        // Add the Predmet and the list of Korisnici to the model
+        model.addAttribute("predmet", predmet);
+        model.addAttribute("korisnici", korisnici);
+        
+        return "list-korisnici-for-predmet";
+    }
+
 }
