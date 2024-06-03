@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tfb.ednevnik.admindto.korisnikDto;
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Predmet;
 import com.tfb.ednevnik.model.Razred;
 
 public interface korisnikService {
@@ -21,4 +22,5 @@ public interface korisnikService {
     void updateKorisnikAndRazred(long korisnikId, long razredId);
     List <Korisnik> findByTip(String tip);
     void assignPredmetiToKorisnik(Long korisnikId, List<Long> predmetId);
+    List<Korisnik> findByPredmet(Predmet predmet);
 }
