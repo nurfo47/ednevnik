@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.model.Razred;
+import com.tfb.ednevnik.repository.korisnikRepository;
 import com.tfb.ednevnik.repository.razredRepository;
 import com.tfb.ednevnik.service.razredService;
 
@@ -14,7 +16,9 @@ import com.tfb.ednevnik.service.razredService;
 public class razredServiceImpl implements razredService{
     
     @Autowired
-    razredRepository razredRepository;
+    private razredRepository razredRepository;
+    @Autowired
+    private korisnikRepository korisnikRepository;
 
     @Override
     public List<Razred> getAllRazred() {
@@ -34,6 +38,23 @@ public class razredServiceImpl implements razredService{
     @Override
     public void deleteRazredById(Long id) {
         razredRepository.deleteById(id);
+    }
+
+    @Override
+    public void addKorisniciToRazred(Long razredId, List<Long> korisnikId) {
+        Razred razred = findById(razredId);
+        List<Korisnik> korisnici = korisnikRepository.findAllById(korisnikId);
+        for (Korisnik korisnik : korisnici){
+            if ("UCENIK".equals(korisnik.getTip())) {
+                korisnik.setRazred(razred);
+            }
+        }
+        korisnikRepository.saveAll(korisnici);
+    }
+
+    @Override
+    public Razred findById(Long id) {
+        return razredRepository.findById(id).orElseThrow(() -> new RuntimeException("Razred nije pronađen"));
     }
 
 
