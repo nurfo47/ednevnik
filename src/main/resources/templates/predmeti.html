@@ -43,12 +43,13 @@
     <div class="container mt-5">
         <div class="row">
             <div class="mt-auto mb-2">
-                <a th:href="@{/add-predmet}" class="btn btn-light btn-outline-dark float-end">DODAJ</a>
+                <a th:href="@{/add-predmet}" class="btn btn-light btn-outline-dark float-end">DODAJ PREDMET</a>
             </div>
                     <div th:each="predmet : ${predmet}" class="col-md-4 mb-4">
                         <div class="card text-center">
                             <div class="card-body d-flex flex-column">
-                                <h4 class="mb-3" th:text="${predmet.naziv}"></h4>
+                                <h3 class="mb-3" th:text="${predmet.naziv}"></h3>
+                                <a th:href="@{/predmeti/{id}/korisnici(id=${predmet.id})}" class="btn btn-light btn-outline-dark">PRIKAZ PREDAVAČA</a>
                             </div>
                         </div>
                     </div>
