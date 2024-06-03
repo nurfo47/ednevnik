@@ -40,7 +40,7 @@
 <div class="container mt-5">
     <div class="row">
     <form th:action="@{/razredi/addKorisnici}" method="post">
-        <h2 class="text-center mb-4">DODAVANJE UČENIKA U RAZRED</h2>
+        <h2 class="text-center mb-4">DODAVANJE UČENIKA U RAZRED <span th:text="${razred.naziv}"></span></h2>
         <input type="hidden" th:value="${razredId}" name="razredId" />
         <table>
             <thead>
@@ -49,6 +49,7 @@
                     <th>Ime</th>
                     <th>Prezime</th>
                     <th>Email</th>
+                    <th>Trenutni razred</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +58,7 @@
                     <td th:text="${korisnik.ime}"></td>
                     <td th:text="${korisnik.prezime}"></td>
                     <td th:text="${korisnik.email}"></td>
+                    <td th:text="${korisnik.razred.naziv}"></td>
                 </tr>
             </tbody>
         </table>
