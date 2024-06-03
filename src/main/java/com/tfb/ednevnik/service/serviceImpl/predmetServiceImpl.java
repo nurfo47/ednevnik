@@ -1,6 +1,7 @@
 package com.tfb.ednevnik.service.serviceImpl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,11 @@ public class predmetServiceImpl implements predmetService{
     @Override
     public Predmet savePredmet(Predmet predmet) {
         return predmetRepository.save(predmet);
+    }
+
+    @Override
+    public Set<Predmet> findAllById(Long predmetId) {
+        return predmetRepository.findAllById(predmetId);
     }
     
 }
