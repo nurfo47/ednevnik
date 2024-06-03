@@ -19,4 +19,6 @@ public interface korisnikService {
     Korisnik save(Korisnik korisnik);
     void toggleActivation(Long id);
     void updateKorisnikAndRazred(long korisnikId, long razredId);
+    List <Korisnik> findByTip(String tip);
+    void assignPredmetiToKorisnik(Long korisnikId, List<Long> predmetId);
 }
