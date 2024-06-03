@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DODIJELA PREDMETA NASTAVNICIMA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="">
+        <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/admin-dashboard}">e-Dnevnik</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
+            <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a class="nav-link" th:href="@{/admin-dashboard}">POČETNA</a></li>
+            <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a class="nav-link" th:href="@{/korisnici}">KORISNICI</a></li>
+            <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a class="nav-link" th:href=@{/razredi}>RAZREDI</a></li>
+            <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"><a class="nav-link" th:href="@{/predmeti}">PREDMETI</a></li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span style="font-size: small;" sec:authentication="principal.username"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
+                    <li><a class="dropdown-item" href="#">Uredi profil</a></li>
+                    <li><a class="dropdown-item" th:href="@{/logout}">Odjava</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <form th:action="@{/korisnici-nastavnik/assign-predmeti}" method="post">
+            <h2 class="text-center mb-4">DODIJELA PREDMETA NASTAVNICIMA</h2>
+            <select class="form-control mb-4" name="korisnikId">
+                <option th:each="korisnik : ${korisnici}" th:value="${korisnik.id}" th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}" th:if="${korisnik.tip} == 'NASTAVNIK'"></option>
+            </select>
+            <select class="form-control mb-4" name="predmetId" multiple>
+                <option th:each="predmet : ${predmeti}" th:value="${predmet.id}" th:text="${predmet.naziv}"></option>
+            </select>
+            <button type="submit" class="btn btn-light btn-block btn-outline-dark float-end">Dodijeli predmete</button>
+        </form>
+</div>
+</div>
+</body>
+</html>
