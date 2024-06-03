@@ -9,4 +9,6 @@ public interface razredService {
     Optional<Razred> getRazredById(Long id);
     Razred saveRazred(Razred razred);
     void deleteRazredById(Long id);
+    void addKorisniciToRazred(Long razredId, List<Long> korisnikId);
+    Razred findById(Long id);
 }
