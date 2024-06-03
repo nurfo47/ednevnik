@@ -42,8 +42,8 @@
        <!-- Dashboard Content -->
     <div class="container mt-5">
         <div class="row">
-            <div class="mt-auto">
-                <a th:href="@{/add-razred}" class="btn btn-light btn-outline-dark float-end">DODAJ</a>
+            <div class="mt-auto mb-2">
+                <a th:href="@{/add-razred}" class="btn btn-light btn-outline-dark float-end">DODAJ RAZREDE</a>
             </div>
             <table>
                 <thead>
@@ -51,12 +51,17 @@
                         <th>Naziv</th>
                         <th>Školska godina</th>
                         <th>Razrednik</th>
+                        <th>Dodaj u razred</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="razred : ${razred}" th:onclick="|redirectToUceniciList(${razred.id})|">
                         <td th:text="${razred.naziv}"></td>
                         <td th:text="${razred.skolskaGodina}"></td>
+                        <td></td>
+                        <td>
+                            <a th:href="@{/razredi/addKorisnici/{id}(id=${razred.id})}" class="btn btn-light btn-outline-dark">DODAJ UČENIKE</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
