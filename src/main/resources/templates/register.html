@@ -94,6 +94,7 @@
                     <div id="razredDiv" style="display: none;" class="form-group mb-3">
                         <label for="razred">RAZRED:</label>
                         <select class="form-control" id="razred" name="razredId" th:field="*{razredId}">
+                            <option value="">-- Select Razred --</option>
                             <option th:each="razred : ${razredi}" th:value="${razred.id}" th:text="${razred.naziv}"></option>
                         </select>
                     </div>
