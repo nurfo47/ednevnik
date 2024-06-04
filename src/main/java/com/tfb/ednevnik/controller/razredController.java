@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Predmet;
 import com.tfb.ednevnik.model.Razred;
 import com.tfb.ednevnik.service.korisnikService;
+import com.tfb.ednevnik.service.predmetService;
 import com.tfb.ednevnik.service.razredService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,6 +30,8 @@ public class razredController {
     private razredService razredService;
     @Autowired
     private korisnikService korisnikService;
+    @Autowired
+    private predmetService predmetService;
 
     @GetMapping("/add-razred")
     public String addRazredPage() {
@@ -73,5 +77,23 @@ public class razredController {
         model.addAttribute("korisnik", korisnik);
         return "razredi-for-korisnik";
     }
-    
+
+    @GetMapping("/razredi/assign-predmeti")
+    public String showAssignPredmetiForm(Model model) {
+        List<Predmet> predmeti = predmetService.getAllPredmet();
+        List<Razred> razredi = razredService.getAllRazred();
+        model.addAttribute("predmeti", predmeti);
+        model.addAttribute("razredi", razredi);
+        return "assignPredmetiRazred";
+    }
+
+    @PostMapping("/razredi/assign-predmeti")
+    public String assignPredmetiToRazred(@RequestParam Long razredId, @RequestParam List<Long> predmetId) {
+        razredService.assignPredmetiToRazred(razredId, predmetId);
+        return "redirect:/razredi";
+    }
+
+
 }
+    
+
