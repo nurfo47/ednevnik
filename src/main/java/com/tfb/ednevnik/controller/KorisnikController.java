@@ -1,5 +1,6 @@
 package com.tfb.ednevnik.controller;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,7 @@ import com.tfb.ednevnik.service.razredService;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -207,15 +209,29 @@ public class KorisnikController {
     //List all users who have assigned selected subject
     @GetMapping("/predmeti/{predmetId}/korisnici")
     public String listKorisniciForPredmet(@PathVariable Long predmetId, Model model) {
-        // Retrieve the Predmet by its ID
+
         Predmet predmet = predmetService.getPredmetById(predmetId);
-        // Get the list of Korisnici who teach the selected Predmet
         List<Korisnik> korisnici = korisnikService.findByPredmet(predmet);
-        // Add the Predmet and the list of Korisnici to the model
         model.addAttribute("predmet", predmet);
         model.addAttribute("korisnici", korisnici);
         
         return "list-korisnici-for-predmet";
     }
+
+    @GetMapping("/assign-razredi")
+    public String showAssignRazrediForm(Model model) {
+        List<Korisnik> nastavnici = korisnikService.getAllKorisnik();
+        List<Razred> razredi = razredService.getAllRazred();
+        model.addAttribute("korisnici", nastavnici);
+        model.addAttribute("razredi", razredi);
+        return "assign-razredi";
+    }
+
+    @PostMapping("/korisnici-nastavnik/assign-razredi")
+    public String assignRazrediToKorisnik(@RequestParam Long korisnikId, @RequestParam List<Long> razredId) {
+        korisnikService.assignRazrediToKorisnik(korisnikId, razredId);
+        return "redirect:/korisnici-nastavnik";
+    }
+    
 
 }
