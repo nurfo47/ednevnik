@@ -1,5 +1,4 @@
 package com.tfb.ednevnik.service.serviceImpl;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -7,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tfb.ednevnik.model.Korisnik;
+import com.tfb.ednevnik.model.Predmet;
 import com.tfb.ednevnik.model.Razred;
 import com.tfb.ednevnik.repository.korisnikRepository;
+import com.tfb.ednevnik.repository.predmetRepository;
 import com.tfb.ednevnik.repository.razredRepository;
 import com.tfb.ednevnik.service.razredService;
 
@@ -19,6 +20,8 @@ public class razredServiceImpl implements razredService{
     private razredRepository razredRepository;
     @Autowired
     private korisnikRepository korisnikRepository;
+    @Autowired
+    private predmetRepository predmetRepository;
 
     @Override
     public List<Razred> getAllRazred() {
@@ -60,6 +63,14 @@ public class razredServiceImpl implements razredService{
     @Override
     public List<Razred> findByKorisnik(Korisnik korisnik) {
         return razredRepository.findByProfesori(korisnik);
+    }
+
+    @Override
+    public void assignPredmetiToRazred(Long razredId, List<Long> predmetId) {
+        Razred razred = razredRepository.findById(razredId).orElseThrow();
+        List<Predmet> predmeti = predmetRepository.findAllById(predmetId);
+        razred.setPredmeti(predmeti);
+        razredRepository.save(razred);
     }
 
 
