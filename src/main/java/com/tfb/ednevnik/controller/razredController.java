@@ -1,8 +1,10 @@
 package com.tfb.ednevnik.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -60,6 +62,16 @@ public class razredController {
     public String addKorisniciToRazred(@RequestParam Long razredId, @RequestParam List<Long> korisnikIds) {
         razredService.addKorisniciToRazred(razredId, korisnikIds);
         return "redirect:/razredi";
+    }
+
+    @GetMapping("/profesor-dashboard/razredi")
+    public String listRazrediForNastavnik(Model model, Authentication authentication) {
+        String loggedUsername = authentication.getName();
+        Korisnik korisnik = korisnikService.findKorisnikByUsername(loggedUsername);
+        Set<Razred> razredi = korisnik.getRazredi();
+        model.addAttribute("razredi", razredi);
+        model.addAttribute("korisnik", korisnik);
+        return "razredi-for-korisnik";
     }
     
 }
