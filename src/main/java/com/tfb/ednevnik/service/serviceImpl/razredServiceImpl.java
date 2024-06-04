@@ -57,5 +57,10 @@ public class razredServiceImpl implements razredService{
         return razredRepository.findById(id).orElseThrow(() -> new RuntimeException("Razred nije pronađen"));
     }
 
+    @Override
+    public List<Razred> findByKorisnik(Korisnik korisnik) {
+        return razredRepository.findByProfesori(korisnik);
+    }
+
 
 }
