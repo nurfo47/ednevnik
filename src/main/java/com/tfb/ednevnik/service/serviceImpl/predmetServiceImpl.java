@@ -35,5 +35,7 @@ public class predmetServiceImpl implements predmetService{
     public Set<Predmet> findAllById(Long predmetId) {
         return predmetRepository.findAllById(predmetId);
     }
+
+   
     
 }
