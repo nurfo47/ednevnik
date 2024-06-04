@@ -78,6 +78,12 @@
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>MJESTO STANOVANJA: </b><span ></span></p>
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>MJESTO PREBIVALIŠTA: </b><span ></span></p>
                 <p><b>ADRESA: </b><span ></span></p>
+                <p th:if="${korisnik.tip == 'NASTAVNIK'}"><b>RAZREDI: </b></p>
+                    <ul th:if="${korisnik.tip == 'NASTAVNIK'}">
+                        <li th:each="razred : ${razred}">
+                            <span th:text="${razred.naziv}"></span>
+                        </li>
+                    </ul>
 
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>RAZRED: </b><span th:text="${#strings.defaultString(korisnik.razred?.naziv, 'null')}"></span></p>
                <div  class="mt-auto">
