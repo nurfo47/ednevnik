@@ -142,5 +142,13 @@ public class korisnikServiceImpl implements korisnikService{
     public List<Korisnik> findByPredmet(Predmet predmet) {
         return korisnikRepository.findByPredmeti(predmet);
     }
+
+    @Override
+    public void assignRazrediToKorisnik(Long korisnikId, List<Long> razredId) {
+        Korisnik korisnik = korisnikRepository.findById(korisnikId).orElseThrow();
+        List<Razred> razredi = razredRepository.findAllById(razredId);
+        korisnik.setRazredi(new HashSet<>(razredi));
+        korisnikRepository.save(korisnik);
+    }
     }
 
