@@ -23,4 +23,5 @@ public interface korisnikService {
     List <Korisnik> findByTip(String tip);
     void assignPredmetiToKorisnik(Long korisnikId, List<Long> predmetId);
     List<Korisnik> findByPredmet(Predmet predmet);
+    void assignRazrediToKorisnik(Long korisnikId, List<Long> razredId);
 }
