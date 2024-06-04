@@ -56,7 +56,9 @@ public class KorisnikController {
     @GetMapping("/korisnik-profil/{id}")
     public String getUserProfile(@PathVariable Long id, Model model) {
         Korisnik korisnik = korisnikService.findKorisnikById(id);
+        List<Razred> razred = korisnikService.getAssignedRazredi(korisnik);
         model.addAttribute("korisnik", korisnik);
+        model.addAttribute("razred", razred);
         return "korisnik-profil";
     }
 
