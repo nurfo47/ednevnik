@@ -150,5 +150,12 @@ public class korisnikServiceImpl implements korisnikService{
         korisnik.setRazredi(new HashSet<>(razredi));
         korisnikRepository.save(korisnik);
     }
+
+    @Override
+    public List<Razred> getAssignedRazredi(Korisnik korisnik) {
+       return razredRepository.findByProfesori(korisnik);
     }
+
+}
+    
 
