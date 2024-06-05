@@ -187,9 +187,9 @@ public class KorisnikController {
     @GetMapping("/razred/{id}/ucenici")
     public String getKorisniciByRazred(@PathVariable Long id, Model model) {
         List<Korisnik> korisnici = korisnikService.getKorisniciByRazred(id);
-        List<Razred> razredi = razredService.getAllRazred();
+        Razred razred = razredService.findById(id);
         model.addAttribute("korisnici", korisnici);
-        model.addAttribute("razredi", razredi);
+        model.addAttribute("razred", razred);
         return "ucenici-razreda";
     }
 
