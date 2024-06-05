@@ -51,6 +51,7 @@
                         <th>Email</th>
                         <th>Razred</th>
                         <th>Profil</th>
+                        <th>Predmeti</th>
                         
                     </tr>
                 </thead>
@@ -70,6 +71,7 @@
                                 </a>
                             </div>
                     </td>
+                    <td><a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti(razredId=${razred.id}, korisnikId=${korisnik.id})}">Pregled</a></td>
                     
                         
                     </tr>
