@@ -1,5 +1,5 @@
 package com.tfb.ednevnik.controller;
-
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.tfb.ednevnik.model.Korisnik;
@@ -50,5 +51,14 @@ public class predmetController {
         model.addAttribute("predmeti", predmeti);
         model.addAttribute("korisnik", korisnik);
         return "predmeti-for-korisnik";
+    }
+
+    @GetMapping("/razredi/{razredId}/ucenici/{korisnikId}/predmeti")
+    public String listPredmetiForUcenikInRazred(@PathVariable Long razredId, @PathVariable Long korisnikId, Model model) {
+        List<Predmet> predmeti = predmetService.findAllByRazredId(razredId);
+        model.addAttribute("predmeti", predmeti);
+        model.addAttribute("korisnikId", korisnikId);
+        model.addAttribute("razredId", razredId);
+        return "predmeti-for-ucenik";
     }
 }
