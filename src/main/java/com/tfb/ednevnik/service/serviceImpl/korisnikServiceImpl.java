@@ -122,7 +122,8 @@ public class korisnikServiceImpl implements korisnikService{
 
     @Override
     public List<Korisnik> getKorisniciByRazred(Long razredId) {
-        return korisnikRepository.findByRazredId(razredId);
+        Razred razred = razredRepository.findById(razredId).orElseThrow(() -> new RuntimeException("Razred not found"));
+        return korisnikRepository.findByRazred(razred);
     }
 
     @Override
