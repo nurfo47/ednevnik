@@ -10,5 +10,7 @@ public interface predmetService {
     Predmet getPredmetById(Long id);
     Predmet savePredmet(Predmet predmet);
     Set<Predmet> findAllById(Long predmetId);
+    List<Predmet> findPredmetByKorisnik(Long korisnikId);
+    List<Predmet> findAllByRazredId(Long razredId);
     
 }
