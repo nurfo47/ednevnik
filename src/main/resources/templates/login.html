@@ -25,13 +25,15 @@
         <div class="login-form">
             <h1 class="text-center mb-5">Prijava</h1>
             <form th:action="@{/login}" method="POST" role="form">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Korisničko ime</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="username" name="username" required placeholder="Username">
+                    <label for="username">Korisničko ime</label>
+                    
                 </div>
-                <div class="mb-4">
-                    <label for="password" class="form-label">Lozinka</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                <div class="form-floating mb-4">
+                    <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+                    <label for="password">Lozinka</label>
+                    
                 </div>
                 <div class="mb-5 form-check">
                     <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
