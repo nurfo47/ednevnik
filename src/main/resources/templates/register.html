@@ -48,57 +48,71 @@
                     </button>
                 </div>
             </div>
-<div class="container"> 
+<div class="container container-fluid"> 
             <div class="registration-form">
-                <h2 class="text-center mb-4">REGISTRACIJA KORISNIKA</h2>
+                <h2 class="text-center mb-5 display-4">REGISTRACIJA KORISNIKA</h2>
                 <form th:action="@{/admin-dashboard/registration}" method="post" role="form" th:object="${korisnik}">
-                    <div class="form-group mb-3">
-                        <label for="ime">Ime</label>
-                        <input type="text" class="form-control" id="ime" name="ime" placeholder="Unesite ime" required>
+                <div class="row g-2">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="ime" name="ime" placeholder="Ime" required>
+                        <label for="ime">Ime</label>   
                     </div>
-                    <div class="form-group mb-3">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="prezime" name="prezime" placeholder="Prezime" required>
                         <label for="prezime">Prezime</label>
-                        <input type="text" class="form-control" id="prezime" name="prezime" placeholder="Unesite prezime" required>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Unesite email adresu" required>
-                    </div>
-                    <div class="form-group mb-3">
+                    
+                </div>
+                <div class="row g-2">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Korisničko ime" required>
                         <label for="username">Korisničko ime</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Unesite korisničko ime" required>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="lozinka">Lozinka</label>
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
                         <input type="password" class="form-control" id="lozinka" name="lozinka" placeholder="Unesite lozinku" required>
+                        <label for="lozinka">Lozinka</label>  
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="mobitel">Mobitel</label>
-                        <input type="text" class="form-control" id="mobitel" name="mobitel" placeholder="Unesite broj mobitela" required>
+                </div>
+                <div class="row g-2">
+                    <div class="form-floating mb-3 col-sm-12 col-md-7 col-lg-7">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        <label for="email">Email</label>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="jmbg">JMBG</label>
-                        <input type="text" class="form-control" id="jmbg" name="jmbg" placeholder="Unesite JMBG" required>
+                    <div class="form-floating mb-3 col-sm-12 col-md-5 col-lg-5">
+                        <input type="text" class="form-control" id="mobitel" name="mobitel" placeholder="Mobitel" required>
+                        <label for="mobitel">Mobitel</label> 
                     </div>
-                    <div class="form-group mb-3">
+                </div>
+                <div class="row g-2">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
+                        <input type="date" class="form-control" id="datum" name="datum" placeholder="Datum" required>
                         <label for="datum">Datum</label>
-                        <input type="date" class="form-control" id="datum" name="datum" required>
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="role">ULOGA PROFILA</label>
-                        <select class="form-control" id="tip" name="tip" th:field="*{tip}" onchange="toggleRazredDropdown()">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-8">
+                        <input type="text" class="form-control" id="jmbg" name="jmbg" placeholder="JMBG" required>
+                        <label for="jmbg">JMBG</label>
+                    </div>  
+                </div>
+                <div class="row g-2">
+                    <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <select class="form-select" id="tip" name="tip" th:field="*{tip}" onchange="toggleRazredDropdown()">
                             <option value="NASTAVNIK">Nastavnik</option>
                             <option value="UCENIK">Učenik</option>
                         </select>
+                        <label for="role">ULOGA PROFILA</label>
                     </div>
-                    <div id="razredDiv" style="display: none;" class="form-group mb-3">
-                        <label for="razred">RAZRED:</label>
-                        <select class="form-control" id="razred" name="razredId" th:field="*{razredId}">
+                    <div id="razredDiv" style="display: none;" class="form-floating mb-3 col-sm-12 col-md-6 col-lg-6">
+                        <select class="form-select" id="razred" name="razredId" th:field="*{razredId}">
                             <option value="">-- Select Razred --</option>
                             <option th:each="razred : ${razredi}" th:value="${razred.id}" th:text="${razred.naziv}"></option>
                         </select>
+                        <label for="razred">RAZRED:</label>
                     </div>
-                    <button type="submit" class="btn btn-light btn-block btn-outline-dark">Dodaj korisnika</button>
+                </div>
+                    <div class="row g-2">
+                        <button type="submit" class=" mx-auto col-4 btn btn-light btn-block btn-outline-dark float-end">Dodaj korisnika</button>
+                    </div>
+                </div>
                 </form>
             </div>
             
