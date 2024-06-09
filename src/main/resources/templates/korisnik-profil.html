@@ -70,7 +70,7 @@
     <!-- Third Card (Additional Info) -->
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-4">
                 <p><b>JMBG: </b><span th:text="${korisnik.jmbg}"></span></p>
                 <p><b>DATUM ROĐENJA: </b><span th:text="${#temporals.format(korisnik.datum, 'dd-MM-yyyy')}"></span></p>
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>IME RODITELJA: </b><span ></span></p>
@@ -86,10 +86,11 @@
                     </ul>
 
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>RAZRED: </b><span th:text="${#strings.defaultString(korisnik.razred?.naziv, 'null')}"></span></p>
-               <div  class="mt-auto">
+                <div  class="mt-auto">
                     <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" th:href="@{/edit/{id}(id=${korisnik.id})}" class="btn btn-dark float-end">UREDI KORISNIKA</a>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
