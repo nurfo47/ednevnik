@@ -49,13 +49,13 @@
         </div>
 <div class="container"> 
         <div class="registration-form">
-            <h2 class="text-center mb-4">DODAJ PREDMET</h2>
+            <h2 class="text-center display-5">DODAJ PREDMET</h2>
             <form th:action="@{/add-predmet}" method="post" role="form" th:object="${predmet}">
-                <div class="form-group mb-3">
-                    <label for="naziv">Naziv</label>
+                <div class="form-floating mt-4 mb-3">
                     <input type="text" class="form-control" id="naziv" name="naziv" placeholder="Naziv predmeta" required>
+                    <label for="naziv">Naziv</label>
                 </div>
-                <button type="submit" class="btn btn-light btn-block btn-outline-dark">Dodaj</button>
+                <button type="submit" class="btn btn-light btn-block btn-outline-dark float-end">Dodaj</button>
             </form>
         </div>
         
