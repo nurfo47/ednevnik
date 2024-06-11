@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registracija</title>
+    <title>UREDI PROFIL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -11,7 +11,7 @@
 <body class="">
     
 
-        <!-- Navbar -->
+<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 <div class="container-fluid">
     <a class="navbar-brand" th:href="@{/admin-dashboard}">e-Dnevnik</a>
@@ -51,27 +51,27 @@
         </div>
 <div class="container"> 
         <div class="registration-form">
-            <h2 class="text-center mb-4">UREDI PODATKE KORISNIKA</h2>
+            <h2 class="text-center mb-4 display-5">UREDI PROFIL</h2>
             <form th:action="@{/uredi-korisnik/{id}(id=${korisnik.id})}" method="post" role="form" th:object="${korisnik}">
                 
-                <div class="form-group mb-3">
-                    <label for="email">Email</label>
+                <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" name="email" th:field="*{email}" autofocus>
+                    <label for="email">Email</label>
                 </div>
                 
-                <div class="form-group mb-3">
-                    <label for="lozinka">Lozinka</label>
+                <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="lozinka" name="lozinka" th:field="*{lozinka}" autofocus>
+                    <label for="lozinka">Lozinka</label>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="mobitel">Mobitel</label>
+                <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="mobitel" name="mobitel" th:field="*{mobitel}" autofocus>
+                    <label for="mobitel">Mobitel</label>   
                 </div>
-               
                 <button type="submit" class="btn btn-light btn-block btn-outline-dark">Spremi</button>
+                
             </form>
         </div>
-        
+        </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
