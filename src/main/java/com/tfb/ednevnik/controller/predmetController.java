@@ -4,6 +4,8 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +17,6 @@ import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.model.Predmet;
 import com.tfb.ednevnik.service.korisnikService;
 import com.tfb.ednevnik.service.predmetService;
-
-
 @Controller
 public class predmetController {
     
@@ -61,4 +61,28 @@ public class predmetController {
         model.addAttribute("razredId", razredId);
         return "predmeti-for-ucenik";
     }
+
+    @GetMapping("/user-dashboard/predmeti")
+    public String listPredmetiForUcenik(Model model) {
+        // Get the authenticated user
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    String username = null;
+    if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        username = userDetails.getUsername();
+    } else if (authentication != null) {
+        username = authentication.getName();
+    }
+
+    // Fetch the Korisnik entity using the username
+    Korisnik korisnik = korisnikService.findKorisnikByUsername(username);
+
+    if (korisnik != null && korisnik.getRazred() != null) {
+        Long razredId = korisnik.getRazred().getId();
+        List<Predmet> predmeti = predmetService.findAllByRazredId(razredId);
+        model.addAttribute("predmeti", predmeti);
+    }
+    return "ucenik-predmeti";
+    }
+    
 }
