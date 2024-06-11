@@ -53,12 +53,26 @@ public class KorisnikController {
     }
 
     //Korisnicki profil
-    @GetMapping("/korisnik-profil/{id}")
-    public String getUserProfile(@PathVariable Long id, Model model) {
-        Korisnik korisnik = korisnikService.findKorisnikById(id);
-        List<Razred> razred = korisnikService.getAssignedRazredi(korisnik);
-        model.addAttribute("korisnik", korisnik);
-        model.addAttribute("razred", razred);
+    @GetMapping("/korisnik-profil")
+    public String getUserProfile(Model model) {
+        // Get the authenticated user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = null;
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            username = userDetails.getUsername();
+        } else if (authentication != null) {
+            username = authentication.getName();
+        }
+
+        // Fetch the Korisnik entity using the username
+        Korisnik korisnik = korisnikService.findKorisnikByUsername(username);
+
+        if (korisnik != null) {
+            List<Razred> razred = korisnikService.getAssignedRazredi(korisnik);
+            model.addAttribute("korisnik", korisnik);
+            model.addAttribute("razred", razred);
+        }
         return "korisnik-profil";
     }
 
@@ -158,7 +172,7 @@ public class KorisnikController {
                     korisnikToUpdate.setLozinka(encodedPassword);
                 }
                 korisnikService.save(korisnikToUpdate);
-                return "redirect:/korisnik-profil/" + korisnik.getId();
+                return "redirect:/korisnik-profil";
 
             }else {
                 return "redirect:/error";
