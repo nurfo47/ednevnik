@@ -37,17 +37,21 @@
     </div>
 </div>
 </nav>
-<div class="container mt-5">
-    <div class="row">
+<div class="container mt-4 d-flex justify-content-center">
+    <div class="row text-center align-self-center">
         <form th:action="@{/korisnici-nastavnik/assign-razredi}" method="post">
-            <h2 class="text-center mb-4">DODIJELA RAZREDA NASTAVNICIMA</h2>
-            <select class="form-control mb-4" name="korisnikId">
-                <option th:each="korisnik : ${korisnici}" th:value="${korisnik.id}" th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}" th:if="${korisnik.tip} == 'NASTAVNIK'"></option>
-            </select>
-            <select class="form-control mb-4" name="razredId" multiple>
-                <option th:each="razred : ${razredi}" th:value="${razred.id}" th:text="${razred.naziv} + ' ' + ${razred.skolskaGodina}"></option>
-            </select>
-            <button type="submit" class="btn btn-light btn-block btn-outline-dark float-end">Dodijeli razred</button>
+            <h2 class="text-center mb-4 display-5">DODIJELA RAZREDA NASTAVNICIMA</h2>
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <select class="form-control form-select-lg mb-5" name="korisnikId">
+                    <option th:each="korisnik : ${korisnici}" th:value="${korisnik.id}" th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}" th:if="${korisnik.tip} == 'NASTAVNIK'"></option>
+                </select>
+
+                <select class="form-control form-select-lg mt-4 mb-5" name="razredId" multiple>
+                    <option th:each="razred : ${razredi}" th:value="${razred.id}" th:text="${razred.naziv} + ' ' + ${razred.skolskaGodina}"></option>
+                </select>
+            
+                <button type="submit" class="btn btn-light btn-block btn-outline-dark float-end">Dodijeli razred</button>
+            </div>
         </form>
 </div>
 </div>
