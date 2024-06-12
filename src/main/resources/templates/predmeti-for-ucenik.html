@@ -42,11 +42,15 @@
 </nav>  
        <!-- Dashboard Content -->
        <div class="container mt-5">
+        
         <div class="row">
             <div th:each="predmet: ${predmeti}" class="col-md-4 mb-4">
                 <div class="card text-center">
                     <div class="card-body d-flex flex-column">
-                        <h4 class="mb-2" th:text="${predmet.naziv}"></h4>
+                        <h4 class="display-6" th:text="${predmet.naziv}"></h4>
+                    </div>
+                    <div class="mt-auto mb-3">
+                        <a th:href="@{/admin-dashboard/{korisnikId}/predmeti/{predmetId}/ocjene(korisnikId=${korisnikId}, predmetId=${predmet.id})}" class="btn btn-light btn-outline-dark">PREGLED OCJENA</a>
                     </div>
                 </div>
             </div>
