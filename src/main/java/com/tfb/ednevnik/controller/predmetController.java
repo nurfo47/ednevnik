@@ -62,6 +62,7 @@ public class predmetController {
         return "predmeti-for-ucenik";
     }
 
+
     @GetMapping("/user-dashboard/predmeti")
     public String listPredmetiForUcenik(Model model) {
         // Get the authenticated user
