@@ -229,6 +229,16 @@ public class KorisnikController {
         return "ucenici-razreda";
     }
 
+    //Lista svih ucenika u razredu
+    @GetMapping("/razredi/{id}/ucenici")
+    public String getUceniciByRazred(@PathVariable Long id, Model model) {
+        List<Korisnik> korisnici = korisnikService.getKorisniciByRazred(id);
+        Razred razred = razredService.findById(id);
+        model.addAttribute("korisnici", korisnici);
+        model.addAttribute("razred", razred);
+        return "ucenici-u-razredu";
+    }
+
     //Assign Predmet to Nastavnik
     @GetMapping("/assign-predmeti")
     public String showAssignPredmetiForm(Model model) {
