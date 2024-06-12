@@ -37,6 +37,10 @@ public class Ocjene {
         this.korisnik = korisnik;
     }
 
+    public Ocjene(){
+        
+    }
+
     public long getId() {
         return id;
     }
