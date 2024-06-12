@@ -47,7 +47,7 @@
                         <h4 class="mb-2 display-6" th:text="${predmet.naziv}"></h4>
                     </div>
                     <div class="mt-auto mb-3">
-                        <a href="#" class="btn btn-light btn-outline-dark">PREGLED OCJENA</a>
+                        <a th:href="@{/user-dashboard/predmeti/{predmetId}/ocjene(predmetId=${predmet.id})}" class="btn btn-light btn-outline-dark">PREGLED OCJENA</a>
                     </div>
                 </div>
             </div>
