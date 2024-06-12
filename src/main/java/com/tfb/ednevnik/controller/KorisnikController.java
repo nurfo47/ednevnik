@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -73,6 +74,27 @@ public class KorisnikController {
             model.addAttribute("korisnik", korisnik);
             model.addAttribute("razred", razred);
         }
+        return "korisnik-profil";
+    }
+
+    //Pristup korisnickim profilima od strane admina preko id-a
+    @GetMapping("/korisnik-profil/{id}")
+    public String getUserProfileById(@PathVariable Long id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAdmin = authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+        if (!isAdmin) {
+            return "redirect:/access-denied"; // Redirect non-admin users to an access denied page
+        }
+
+        Korisnik korisnik = korisnikService.findKorisnikById(id);
+
+        if (korisnik != null) {
+            List<Razred> razred = korisnikService.getAssignedRazredi(korisnik);
+            model.addAttribute("korisnik", korisnik);
+            model.addAttribute("razred", razred);
+        }
+
         return "korisnik-profil";
     }
 
