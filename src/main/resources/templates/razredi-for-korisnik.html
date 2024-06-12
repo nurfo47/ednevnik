@@ -59,7 +59,7 @@
                         <h4 class="card-title" th:text="${razred.naziv}"></h4>
                     </div>
                     <div class="card-footer text-muted">
-                        <a href="" class="btn btn-light btn-outline-dark">PREGLED</a>
+                        <a th:href="@{/razredi/{id}/ucenici(id=${razred.id})}" class="btn btn-light btn-outline-dark">PREGLED</a>
                     </div>
                 </div>
             </div>
