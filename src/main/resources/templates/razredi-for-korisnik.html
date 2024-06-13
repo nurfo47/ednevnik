@@ -38,7 +38,7 @@
                         <span style="font-size: small;" sec:authentication="principal.username"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                        <li><a class="dropdown-item" href="#">Uredi profil</a></li>
+                        <li><a class="dropdown-item" th:href="@{/korisnik-profil}">Moj profil</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Odjava</a></li>
                     </ul>
                 </li>
@@ -49,9 +49,9 @@
        <!-- Dashboard Content -->
        <div class="container mt-4">
         <h2 class="display-5 mb-4">RAZREDI</h2>
-        <div class="row">
-            <div th:each="razred: ${razredi}" class="col-md-4 mb-4">
-                <div class="card w-50 text-center">
+        <div class="row justify-content-center">
+            <div th:each="razred: ${razredi}" class=" col-sm-12 col-md-4 col-lg-3 mb-4">
+                <div class="card w-75 text-center">
                     <div class="card-header">
                         <p class="mb-2" th:text="${razred.skolskaGodina}"></p>
                     </div>
@@ -59,7 +59,7 @@
                         <h4 class="card-title" th:text="${razred.naziv}"></h4>
                     </div>
                     <div class="card-footer text-muted">
-                        <a th:href="@{/razredi/{id}/ucenici(id=${razred.id})}" class="btn btn-light btn-outline-dark">PREGLED</a>
+                        <a th:href="@{/razredi/{id}/ucenici(id=${razred.id})}" class="btn btn-light btn-outline-dark">PREGLED UČENIKA</a>
                     </div>
                 </div>
             </div>
