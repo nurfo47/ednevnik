@@ -3,6 +3,8 @@ import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,10 +37,24 @@ public class ocjeneController {
     //Prikaz forme za unos ocjene iz određenog predmeta
     @GetMapping("/razredi/{razredId}/ucenici/{korisnikId}/ocjene/new")
     public String showAddOcjenaForm(@PathVariable Long razredId, @PathVariable Long korisnikId, Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Korisnik authenticatedKorisnik = korisnikService.findKorisnikByUsername(username);
+
+        //Provjeri da li je korisnik uloge nastavnik, ako nije vrati error stranicu
+        if (!authenticatedKorisnik.getTip().equals("NASTAVNIK")) {
+            return "error";
+        }
         Korisnik korisnik = korisnikService.findKorisnikById(korisnikId);
-        List<Predmet> predmeti = predmetService.findAllByRazredId(razredId);
+
+        //Filtriraj predmete na osnovu korisnika kojima su dodjeljeni
+        List<Predmet> allPredmeti = predmetService.findAllByRazredId(razredId);
+        List<Predmet> filteredPredmeti = allPredmeti.stream()
+            .filter(predmet -> predmet.getKorisnik().contains(authenticatedKorisnik))
+            .collect(Collectors.toList());
         model.addAttribute("korisnik", korisnik);
-        model.addAttribute("predmeti", predmeti);
+        model.addAttribute("predmeti", filteredPredmeti);
         model.addAttribute("razredId", razredId);
         return "add-ocjena";
     }
