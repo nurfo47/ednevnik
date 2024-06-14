@@ -75,21 +75,21 @@
                 </div>
                 <div class="row g-2">
                     <div class="form-floating mb-3 col-sm-12 col-md-7 col-lg-7">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                         <label for="email">Email</label>
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-5 col-lg-5">
-                        <input type="text" class="form-control" id="mobitel" name="mobitel" placeholder="Mobitel" required>
+                        <input type="text" class="form-control" id="mobitel" name="mobitel" placeholder="Mobitel">
                         <label for="mobitel">Mobitel</label> 
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-4">
-                        <input type="date" class="form-control" id="datum" name="datum" placeholder="Datum" required>
+                        <input type="date" class="form-control" id="datum" name="datum" placeholder="Datum">
                         <label for="datum">Datum</label>
                     </div>
                     <div class="form-floating mb-3 col-sm-12 col-md-6 col-lg-8">
-                        <input type="text" class="form-control" id="jmbg" name="jmbg" placeholder="JMBG" required>
+                        <input type="text" class="form-control" id="jmbg" name="jmbg" placeholder="JMBG">
                         <label for="jmbg">JMBG</label>
                     </div>  
                 </div>
@@ -98,6 +98,7 @@
                         <select class="form-select" id="tip" name="tip" th:field="*{tip}" onchange="toggleRazredDropdown()">
                             <option value="NASTAVNIK">Nastavnik</option>
                             <option value="UCENIK">Učenik</option>
+                            <option value="RAZREDNIK">Razrednik</option>
                         </select>
                         <label for="role">ULOGA PROFILA</label>
                     </div>
