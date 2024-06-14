@@ -54,9 +54,10 @@
         <div class="col-sm-12 col-md-4 col-lg-4">
             <div class="card">
                 <div class="icon">
-                    <i class="fas fa-chalkboard-teacher fa-9x mb-4" th:if="${korisnik.tip == 'NASTAVNIK'}" alt="NASTAVNIK"></i>
+                    <i class="fas fa-chalkboard-teacher fa-9x mb-4" th:if="${korisnik.tip == 'NASTAVNIK'} or ${korisnik.tip} == 'RAZREDNIK'" alt="NASTAVNIK"></i>
                     <i class="fas fa-user-graduate fa-9x mb-4" th:if="${korisnik.tip == 'UCENIK'}" alt="UCENIK"></i>
                 </div>
+                <h2 class="display-6 text-center"><span th:text="${korisnik.tip}"></span></h2>
             </div>
         </div>
         <!-- Second Card (User Basic Info) -->
@@ -68,6 +69,7 @@
                 <div class="mt-auto">
                     <a th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}"  th:href="@{/uredi}" class="btn btn-dark float-end">Uredi podatke</a>
                     <a th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}"  th:href="@{/uredi}" class="btn btn-dark float-end">Uredi podatke</a>
+                    <a th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}"  th:href="@{/uredi}" class="btn btn-dark float-end">Uredi podatke</a>
                 </div>
             </div>
         </div>
@@ -83,8 +85,8 @@
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>MJESTO STANOVANJA: </b><span ></span></p>
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>MJESTO PREBIVALIŠTA: </b><span ></span></p>
                 <p><b>ADRESA: </b><span ></span></p>
-                <p th:if="${korisnik.tip == 'NASTAVNIK'}"><b>RAZREDI: </b></p>
-                    <ul th:if="${korisnik.tip == 'NASTAVNIK'}">
+                <p th:if="${korisnik.tip == 'NASTAVNIK'} or ${korisnik.tip} == 'RAZREDNIK'"><b>RAZREDI: </b></p>
+                    <ul th:if="${korisnik.tip == 'NASTAVNIK'} or ${korisnik.tip} == 'RAZREDNIK'">
                         <li th:each="razred : ${razred}">
                             <span th:text="${razred.naziv}"></span>
                         </li>
