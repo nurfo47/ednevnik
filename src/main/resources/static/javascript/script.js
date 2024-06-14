@@ -9,7 +9,7 @@ function redirectToUceniciList(razredId) {
 function toggleRazredDropdown() {
     var tip = document.getElementById('tip').value;
     var razredDiv = document.getElementById('razredDiv');
-    if (tip === 'NASTAVNIK') {
+    if (tip === 'NASTAVNIK' || tip === 'RAZREDNIK') {
         razredDiv.style.display = 'none';
     } else {
         razredDiv.style.display = 'block';
