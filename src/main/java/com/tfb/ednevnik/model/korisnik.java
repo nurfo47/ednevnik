@@ -30,7 +30,7 @@ public class Korisnik {
     private String ime;
     private String prezime;
 
-    @Column(unique=true)
+    @Column(unique=true, nullable=true)
     private String email; 
 
     @Column(unique = true)
@@ -40,9 +40,10 @@ public class Korisnik {
     @Column(nullable = true)
     private String mobitel;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = true)
     private String jmbg;
 
+    @Column(nullable = true)
     private LocalDate datum;
 
     

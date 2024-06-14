@@ -3,6 +3,7 @@ package com.tfb.ednevnik.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -99,7 +100,9 @@ public class Razred {
     }
 
     public Set<Korisnik> getProfesori() {
-        return profesori;
+        return profesori.stream()
+            .filter(korisnik -> "NASTAVNIK".equalsIgnoreCase(korisnik.getTip()) || "RAZREDNIK".equalsIgnoreCase(korisnik.getTip()))
+            .collect(Collectors.toSet());
     }
 
     public void setProfesori(Set<Korisnik> profesori) {
