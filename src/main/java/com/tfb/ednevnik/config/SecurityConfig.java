@@ -38,6 +38,7 @@ public class SecurityConfig {
         .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard", "/registration").hasAuthority("ROLE_ADMIN")
         .requestMatchers("/user-dashboard").hasAuthority("ROLE_UCENIK")
         .requestMatchers("/profesor-dashboard").hasAuthority("ROLE_NASTAVNIK")
+        .requestMatchers("/razrednik-dashboard").hasAuthority("ROLE_RAZREDNIK")
         .requestMatchers("/css/**","/javascript/**").permitAll()
         .anyRequest().authenticated())
 
