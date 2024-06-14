@@ -73,5 +73,18 @@ public class razredServiceImpl implements razredService{
         razredRepository.save(razred);
     }
 
+    @Override
+    public Korisnik findKorisnikByRazred(Long razredId) {
+        Razred razred = razredRepository.findById(razredId).orElse(null);
+        if (razred != null) {
+            for (Korisnik korisnik : razred.getProfesori()) {
+                if ("RAZREDNIK".equalsIgnoreCase(korisnik.getTip())) {
+                    return korisnik;
+                }
+            }
+        }
+        return null;
+    }
+
 
 }
