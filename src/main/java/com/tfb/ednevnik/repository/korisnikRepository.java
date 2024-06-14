@@ -22,5 +22,6 @@ public interface korisnikRepository extends JpaRepository<Korisnik, Long>{
     @SuppressWarnings("null")
     List<Korisnik> findAllById(@SuppressWarnings("null") Iterable<Long> ids);
     List<Korisnik> findByPredmeti(Predmet predmet);
+    Korisnik findByRazredAndTip(Razred razred, String string);
     
 }
