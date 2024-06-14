@@ -53,6 +53,13 @@ public class KorisnikController {
         return "korisnici-nastavnik";
     }
 
+    //List Razrednici
+    @GetMapping("/korisnici-razrednik")
+    public String listKorisniciRazrednik(Model model) {
+        model.addAttribute("korisnici", korisnikService.getAllKorisnik());
+        return "korisnici-razrednik";
+    }
+
     //Korisnicki profil
     @GetMapping("/korisnik-profil")
     public String getUserProfile(Model model) {
@@ -138,6 +145,26 @@ public class KorisnikController {
         return "user-dashboard";
     }
 
+    @GetMapping("/razrednik-dashboard")
+    public String razrednikDashboard(Model model){
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    if (authentication != null) {
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+            String authenticatedEmail = userDetails.getUsername();
+            Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedEmail);
+            if (korisnik != null) {
+                model.addAttribute("korisnik", korisnik);
+            } else {
+                // Handle user not found case
+                System.out.println("User not found with username: " + authenticatedEmail);
+            }
+        }
+    }
+        return "razrednik-dashboard";
+    }
+
     @GetMapping("/toggleSActivation/{id}")
     public String toggleSActivation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         korisnikService.toggleActivation(id);
@@ -150,6 +177,13 @@ public class KorisnikController {
         korisnikService.toggleActivation(id);
         redirectAttributes.addFlashAttribute("activationChanged", true);
         return "redirect:/korisnici-nastavnik";
+    }
+
+    @GetMapping("/toggleRActivation/{id}")
+    public String toggleRActivation(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        korisnikService.toggleActivation(id);
+        redirectAttributes.addFlashAttribute("activationChanged", true);
+        return "redirect:/korisnici-razrednik";
     }
 
     @GetMapping("/uredi")
@@ -224,8 +258,10 @@ public class KorisnikController {
     public String getKorisniciByRazred(@PathVariable Long id, Model model) {
         List<Korisnik> korisnici = korisnikService.getKorisniciByRazred(id);
         Razred razred = razredService.findById(id);
+        Korisnik razrednik = razredService.findKorisnikByRazred(id);
         model.addAttribute("korisnici", korisnici);
         model.addAttribute("razred", razred);
+        model.addAttribute("razrednik", razrednik);
         return "ucenici-razreda";
     }
 
