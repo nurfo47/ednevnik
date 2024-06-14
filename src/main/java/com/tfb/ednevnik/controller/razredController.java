@@ -68,7 +68,7 @@ public class razredController {
         return "redirect:/razredi";
     }
 
-    @GetMapping("/profesor-dashboard/razredi")
+    @GetMapping("/razredi/moji-razredi")
     public String listRazrediForNastavnik(Model model, Authentication authentication) {
         String loggedUsername = authentication.getName();
         Korisnik korisnik = korisnikService.findKorisnikByUsername(loggedUsername);
