@@ -41,36 +41,32 @@
         <!-- Dashboard Content -->
        <div class="container mt-5">
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div th:each="razred: ${razredi}" class=" col-sm-12 col-md-4 col-lg-4 mb-4">
                 <div class="card text-center">
+                    <div class="card-header">
+                        <p class="mb-2" th:text="${razred.skolskaGodina}"></p>
+                    </div>
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title mb-4">RAZRED</h4>
                         <i class="fas fa-chalkboard fa-5x mb-4"></i>
-                        <div class="mt-auto">
-                            <a th:href="@{/razredi/moji-razredi}"  class="btn btn-dark float-start">PREGLED</a>
-                        </div>
+                        <h4 class="card-title display-6" th:text="${razred.naziv}"></h4>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a th:href="@{/razredi/{id}/ucenici(id=${razred.id})}" class="btn btn-light btn-outline-dark">PREGLED UČENIKA</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
+            
+            <div class=" col-sm-12 col-md-4 col-lg-4 mb-4">
                 <div class="card text-center">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title mb-4">IZOSTANCI</h4>
-                        <i class="fas fa-book-open-reader fa-5x mb-4"></i>
-                        <div class="mt-auto">
-                            <a href=""  class="btn btn-dark float-start">PREGLED</a>
-                        </div>
+                    <div class="card-header">
+                        <p class="mb-2">2023</p>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-center">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title mb-4">RASPORED</h5>
                         <i class="fas fa-calendar-alt fa-5x mb-4"></i>
-                        <div class="mt-auto">
-                            <a href="#" class="btn btn-dark float-start">PREGLED</a>
-                        </div>
+                        <h5 class="card-title display-6">RASPORED</h5>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="#" class="btn btn-light btn-outline-dark">PREGLED RASPOREDA</a>
                     </div>
                 </div>
             </div>
