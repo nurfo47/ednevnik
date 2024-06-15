@@ -46,36 +46,6 @@ body {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Small shadow */
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-th {
-    background-color: #f4f4f4;
-}
-tr:hover {
-    background-color: #f1f1f1;
-}
-@media (max-width: 600px) {
-    table, th, td {
-        display: block;
-        width: 100%;
-    }
-    th, td {
-        padding: 10px;
-    }
-    th {
-        background-color: transparent;
-        border-bottom: 0;
-    }
-}
-
 .container-profile {
 
     display: flexbox;
