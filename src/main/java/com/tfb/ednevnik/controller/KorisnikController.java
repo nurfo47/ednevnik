@@ -98,8 +98,11 @@ public class KorisnikController {
 
         if (korisnik != null) {
             List<Razred> razred = korisnikService.getAssignedRazredi(korisnik);
+            List<Razred> razredi = razredService.findRazredByKorisnik(korisnik);
+
             model.addAttribute("korisnik", korisnik);
             model.addAttribute("razred", razred);
+            model.addAttribute("razredi", razredi);
         }
 
         return "korisnik-profil";
@@ -155,7 +158,9 @@ public class KorisnikController {
             String authenticatedEmail = userDetails.getUsername();
             Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedEmail);
             if (korisnik != null) {
+                List<Razred> razredi = razredService.findRazredByKorisnik(korisnik);
                 model.addAttribute("korisnik", korisnik);
+                model.addAttribute("razredi", razredi);
             } else {
                 // Handle user not found case
                 System.out.println("User not found with username: " + authenticatedEmail);
