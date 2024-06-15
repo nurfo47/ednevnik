@@ -24,6 +24,8 @@
                     <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/razredi}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RAZREDI</a></li>
                     <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">PREDMETI</a></li>
                     <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RASPORED</a></li>
+                <!--RAZREDNIK-->
+                <li class="nav-item"><a class="nav-link" th:href="@{/razrednik-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">POČETNA</a></li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
@@ -49,8 +51,8 @@
                         <th>Ime</th>
                         <th>Prezime</th>
                         <th>Email</th>
-                        <th>Unos ocjene</th>
-                        <th>Pregled ocjena</th>
+                        <th th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">Unos ocjene</th>
+                        <th th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">Izostanci</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +60,8 @@
                         <td th:text="${korisnik.ime}"></td>
                         <td th:text="${korisnik.prezime}"></td>
                         <td th:text="${korisnik.email}"></td>
-                        <td><a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{id}/ucenici/{korisnikId}/ocjene/new(id=${razred.id}, korisnikId=${korisnik.id})}">UNESI OCJENU</a></td>
+                        <td th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}"><a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{id}/ucenici/{korisnikId}/ocjene/new(id=${razred.id}, korisnikId=${korisnik.id})}">UNESI OCJENU</a></td>
+                        <td th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}"><a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/add(razredId=${razred.id}, ucenikId=${korisnik.id})}">UNESI IZOSTANAK</a></td>
                     </tr>
                 </tbody>
             </table>
