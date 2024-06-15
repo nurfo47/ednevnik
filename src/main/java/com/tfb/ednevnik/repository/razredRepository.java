@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.tfb.ednevnik.model.Razred;
@@ -23,7 +24,7 @@ public interface razredRepository extends JpaRepository<Razred, Long>{
         @SuppressWarnings("null")
         @EntityGraph(attributePaths = {"profesori"})
         List<Razred> findAll();
-        @Query("SELECT DISTINCT r FROM Razred r JOIN FETCH r.profesori k WHERE k.tip = 'RAZREDNIK'")
-        List<Razred> findAllWithRazrednik();
+        @Query("SELECT DISTINCT r FROM Razred r JOIN r.profesori k WHERE k.tip = 'RAZREDNIK' AND r.id = :razredId")
+        List<Razred> findAllWithRazrednik(@Param("razredId") long razredId);
         
 }
