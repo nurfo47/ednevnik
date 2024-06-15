@@ -56,10 +56,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="razred : ${razred}" th:onclick="|redirectToUceniciList(${razred.id})|">
+                    <tr th:each="razred : ${razredi}" th:onclick="|redirectToUceniciList(${razred.id})|">
                         <td th:text="${razred.naziv}"></td>
                         <td th:text="${razred.skolskaGodina}"></td>
-                        <td></td>
+                        <td>
+                            <ul class="list-group list-group-horizontal mb-4">
+                                <li class="list-group-item" >
+                                    <span th:each="korisnik : ${razred.profesori}" th:if="${korisnik.tip == 'RAZREDNIK'}">
+                                        <span th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}"></span>
+                                </li>
+                            </ul>
+                        </td>
                         <td>
                             <a th:href="@{/razredi/addKorisnici/{id}(id=${razred.id})}" class="btn btn-light btn-outline-dark">DODAJ UČENIKE</a>
                         </td>
