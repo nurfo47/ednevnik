@@ -86,8 +86,8 @@
                 <p th:if="${korisnik.tip == 'UCENIK'}"><b>MJESTO PREBIVALIŠTA: </b><span ></span></p>
                 <p><b>ADRESA: </b><span ></span></p>
                 <p th:if="${korisnik.tip == 'NASTAVNIK'} or ${korisnik.tip} == 'RAZREDNIK'"><b>RAZREDI: </b></p>
-                    <ul th:if="${korisnik.tip == 'NASTAVNIK'} or ${korisnik.tip} == 'RAZREDNIK'">
-                        <li th:each="razred : ${razred}">
+                    <ul class="list-group list-group-horizontal mb-4" th:if="${korisnik.tip == 'NASTAVNIK'} or ${korisnik.tip} == 'RAZREDNIK'">
+                        <li class="list-group-item" th:each="razred : ${korisnik.razredi}">
                             <span th:text="${razred.naziv}"></span>
                         </li>
                     </ul>
