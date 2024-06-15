@@ -47,10 +47,12 @@ public class razredController {
     }
 
     @GetMapping("/razredi")
-    public String listAllRazredi(Model model) {
-        model.addAttribute("razred", razredService.getAllRazred());
-        return "/razredi";
+    public String listAllRazredi(Long razredId, Model model) {
+        List<Razred> razredi = razredService.getAllRazred();
+        model.addAttribute("razredi", razredi);
+        return "razredi";
     }
+        
     
      @GetMapping("/razredi/addKorisnici/{id}")
     public String showAddKorisniciToRazred(@PathVariable Long id, Model model) {
