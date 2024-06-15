@@ -3,8 +3,6 @@ package com.tfb.ednevnik.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +32,7 @@ public class Razred {
     @OneToMany(mappedBy = "razred")
     private Set<Korisnik> ucenici = new HashSet<>();
 
-    @ManyToMany(mappedBy = "razred")
+    @ManyToMany(mappedBy = "razred", fetch = FetchType.LAZY)
     private Set<Korisnik> profesori = new HashSet<>();
 
     @OneToMany(mappedBy = "razred", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -100,9 +98,7 @@ public class Razred {
     }
 
     public Set<Korisnik> getProfesori() {
-        return profesori.stream()
-            .filter(korisnik -> "NASTAVNIK".equalsIgnoreCase(korisnik.getTip()) || "RAZREDNIK".equalsIgnoreCase(korisnik.getTip()))
-            .collect(Collectors.toSet());
+        return profesori;
     }
 
     public void setProfesori(Set<Korisnik> profesori) {

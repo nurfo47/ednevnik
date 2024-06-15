@@ -72,7 +72,7 @@ public class Korisnik {
     @OneToMany(mappedBy = "korisnik", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ocjene> ocjeneList;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Nas_Raz",
         joinColumns = @JoinColumn(name = "korisnik_id"),
