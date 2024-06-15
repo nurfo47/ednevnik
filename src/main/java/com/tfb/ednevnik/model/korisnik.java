@@ -104,6 +104,10 @@ public class Korisnik {
         //TODO Auto-generated constructor stub
     }
 
+    public Korisnik(Long id){
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }

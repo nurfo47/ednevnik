@@ -21,7 +21,7 @@ public class Izostanci {
     @Column(nullable = true)
     private String razlog;
     @Column(nullable = true)
-    private boolean opravdanost;
+    private String opravdanost;
 
     @ManyToOne
     @JoinColumn(name = "id_raz", nullable = true)
@@ -31,13 +31,16 @@ public class Izostanci {
     @JoinColumn(name = "id_kor", nullable = true)
     private Korisnik korisnik;
 
-    public Izostanci(LocalDate datum, String razlog, boolean opravdanost, Razred razred,
+    public Izostanci(LocalDate datum, String razlog, String opravdanost, Razred razred,
             Korisnik korisnik) {
         this.datum = datum;
         this.razlog = razlog;
         this.opravdanost = opravdanost;
         this.razred = razred;
         this.korisnik = korisnik;
+    }
+    public Izostanci(){
+
     }
 
     public long getId() {
@@ -64,11 +67,11 @@ public class Izostanci {
         this.razlog = razlog;
     }
 
-    public boolean isOpravdanost() {
+    public String isOpravdanost() {
         return opravdanost;
     }
 
-    public void setOpravdanost(boolean opravdanost) {
+    public void setOpravdanost(String opravdanost) {
         this.opravdanost = opravdanost;
     }
 
