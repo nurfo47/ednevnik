@@ -15,4 +15,6 @@ public interface razredService {
     List<Razred> findByKorisnik(Korisnik korisnik);
     void assignPredmetiToRazred(Long razredId, List<Long> predmetId);
     Korisnik findKorisnikByRazred(Long razredId);
+    List<Razred> findRazredByKorisnik(Korisnik korisnik);
+    List<Razred> getAllRazredWithRazrednik();
 }
