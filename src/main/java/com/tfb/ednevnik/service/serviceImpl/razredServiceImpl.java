@@ -93,8 +93,8 @@ public class razredServiceImpl implements razredService{
     }
 
     @Override
-    public List<Razred> getAllRazredWithRazrednik() {
-        return razredRepository.findAllWithRazrednik();
+    public List<Razred> findAllWithRazrednik(long id) {
+        return razredRepository.findAllWithRazrednik(id);
     }
 }
 
