@@ -25,7 +25,8 @@ public class razredServiceImpl implements razredService{
 
     @Override
     public List<Razred> getAllRazred() {
-        return razredRepository.findAll();
+        List<Razred> razredi = razredRepository.findAll();
+        return razredi;
     }
 
     @Override
@@ -86,5 +87,14 @@ public class razredServiceImpl implements razredService{
         return null;
     }
 
+    @Override
+    public List<Razred> findRazredByKorisnik(Korisnik korisnik) {
+        return razredRepository.findByProfesori(korisnik);
+    }
 
+    @Override
+    public List<Razred> getAllRazredWithRazrednik() {
+        return razredRepository.findAllWithRazrednik();
+    }
 }
+
