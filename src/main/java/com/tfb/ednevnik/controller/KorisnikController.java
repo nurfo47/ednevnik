@@ -1,5 +1,6 @@
 package com.tfb.ednevnik.controller;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -148,25 +149,13 @@ public class KorisnikController {
         return "user-dashboard";
     }
 
-    @GetMapping("/razrednik-dashboard")
-    public String razrednikDashboard(Model model){
-         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    if (authentication != null) {
-        Object principal = authentication.getPrincipal();
-        if (principal instanceof UserDetails) {
-            UserDetails userDetails = (UserDetails) principal;
-            String authenticatedEmail = userDetails.getUsername();
-            Korisnik korisnik = korisnikService.findKorisnikByUsername(authenticatedEmail);
-            if (korisnik != null) {
-                List<Razred> razredi = razredService.findRazredByKorisnik(korisnik);
-                model.addAttribute("korisnik", korisnik);
-                model.addAttribute("razredi", razredi);
-            } else {
-                // Handle user not found case
-                System.out.println("User not found with username: " + authenticatedEmail);
-            }
-        }
-    }
+     @GetMapping("/razrednik-dashboard")
+    public String listRazrediForRazrednik(Model model, Authentication authentication) {
+        String loggedUsername = authentication.getName();
+        Korisnik korisnik = korisnikService.findKorisnikByUsername(loggedUsername);
+        Set<Razred> razredi = korisnik.getRazredi();
+        model.addAttribute("razredi", razredi);
+        model.addAttribute("korisnik", korisnik);
         return "razrednik-dashboard";
     }
 
