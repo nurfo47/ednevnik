@@ -67,7 +67,7 @@ public class Izostanci {
         this.razlog = razlog;
     }
 
-    public String isOpravdanost() {
+    public String getOpravdanost() {
         return opravdanost;
     }
 
