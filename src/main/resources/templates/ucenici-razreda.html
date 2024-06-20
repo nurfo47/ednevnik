@@ -53,6 +53,7 @@
                         <th>Razred</th>
                         <th>Profil</th>
                         <th>Predmeti</th>
+                        <th>Izostanci</th>
                         
                     </tr>
                 </thead>
@@ -73,6 +74,7 @@
                             </div>
                     </td>
                     <td><a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti(razredId=${razred.id}, korisnikId=${korisnik.id})}">Pregled</a></td>
+                    <td><a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/izostanci(razredId=${razred.id}, ucenikId=${korisnik.id})}">Pregled</a></td>
                     
                         
                     </tr>
