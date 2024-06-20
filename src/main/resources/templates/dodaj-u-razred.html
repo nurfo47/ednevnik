@@ -38,11 +38,11 @@
 </div>
 </nav>
 <div class="container mt-5">
-    <div class="row">
+    <div class="row table-responsive">
     <form th:action="@{/razredi/addKorisnici}" method="post">
-        <h2 class="text-center mb-4">DODAVANJE UČENIKA U RAZRED <span th:text="${razred.naziv}"></span></h2>
+        <h2 class="text-center mb-4 display-5">DODAVANJE UČENIKA U RAZRED <span th:text="${razred.naziv}"></span></h2>
         <input type="hidden" th:value="${razredId}" name="razredId" />
-        <table>
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Odabir</th>
@@ -54,7 +54,7 @@
             </thead>
             <tbody>
                 <tr th:each="korisnik : ${korisnici}">
-                    <td><input type="checkbox" th:value="${korisnik.id}" name="korisnikIds" /></td>
+                    <td><input type="checkbox" th:value="${korisnik.id}" name="korisnikIds" class="checkbox"/></td>
                     <td th:text="${korisnik.ime}"></td>
                     <td th:text="${korisnik.prezime}"></td>
                     <td th:text="${korisnik.email}"></td>
