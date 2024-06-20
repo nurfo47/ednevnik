@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ocjene predmeta</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" th:href="@{/css/styles.css}">
+        <!-- Font Awesome CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <script th:src="@{/javascript/script.js}"></script>
+    </head>
+    <body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/admin-dashboard}">e-Dnevnik</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
+                <li class="nav-item"><a class="nav-link" th:href="@{/razrednik-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">POČETNA</a>
+                <li class="nav-item"><a class="nav-link" href="" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">RAZRED</a>
+                <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">RASPORED</a>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span style="font-size: small;" sec:authentication="principal.username"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
+                        <li><a class="dropdown-item" th:href="@{/korisnik-profil}">Uredi profil</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Odjava</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>  
+       <!-- Dashboard Content -->
+    <div class="container mt-5">
+        <h1 class="text-center display-5 mb-3">Ocjene za predmet: <span th:text="${predmet.naziv}"></span></h1>
+        <h2 class="display-6 mb-3">Učenik: <span th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}"></span></h2>
+        <div class="row table-responsive">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th>Ocjena</th>
+                        <th>Oblast</th>
+                        <th>Datum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ocjena : ${ocjene}">
+                        <td th:text="${ocjena.ocjena}"></td>
+                        <td th:text="${ocjena.oblast}"></td>
+                        <td th:text="${#temporals.format(ocjena.datum, 'dd-MM-yyyy')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // Example to show the alert message (for testing purposes)
+            document.getElementById('alert-message').classList.remove('d-none');
+        </script>
+    </body>
+    </html>
