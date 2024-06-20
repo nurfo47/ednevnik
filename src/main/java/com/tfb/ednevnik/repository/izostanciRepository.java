@@ -14,4 +14,5 @@ public interface izostanciRepository extends JpaRepository<Izostanci, Long>{
     Set<Izostanci> getAllById(Long id);
     List<Izostanci> findAllByKorisnikId(Long id);
     List<Izostanci> findByKorisnikAndRazred(Korisnik korisnik, Razred razred);
+    List<Izostanci> findByKorisnik(Korisnik korisnik);
 }
