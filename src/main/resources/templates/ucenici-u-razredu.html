@@ -61,8 +61,8 @@
                         <td th:text="${korisnik.prezime}"></td>
                         <td th:text="${korisnik.email}"></td>
                         <td >
-                            <a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{id}/ucenici/{korisnikId}/ocjene/new(id=${razred.id}, korisnikId=${korisnik.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">UNESI</a>
-                            <a class="btn btn-light btn-outline-dark" href="">PREGLEDAJ</a>
+                            <a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{id}/ucenici/{korisnikId}/ocjene/add(id=${razred.id}, korisnikId=${korisnik.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">UNESI</a>
+                            <a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti(razredId=${razred.id}, korisnikId=${korisnik.id})}">PREGLEDAJ</a>
                         </td>
                         <td th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">
                             <a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/add(razredId=${razred.id}, ucenikId=${korisnik.id})}">UNESI</a>
