@@ -21,6 +21,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> 
                 <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">POČETNA</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">PREDMETI</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard/izostanci}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">IZOSTANCI</a></li>
                 <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">RASPORED</a></li>
             </ul>
             <ul class="navbar-nav">
@@ -29,7 +31,7 @@
                         <span style="font-size: small;" sec:authentication="principal.username"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown" sec:authorize="isAuthenticated()">
-                        <li><a class="dropdown-item" href="#">Uredi profil</a></li>
+                        <li><a class="dropdown-item" th:href="@{/korisnik-profil}">Uredi profil</a></li>
                         <li><a class="dropdown-item" th:href="@{/logout}">Odjava</a></li>
                     </ul>
                 </li>
