@@ -41,5 +41,10 @@ public class izostanciServiceImpl implements izostanciService {
     public List<Izostanci> findAllIzostanci() {
         return izostanciRepository.findAll();
     }
+
+    @Override
+    public List<Izostanci> findIzostanciByKorisnik(Korisnik korisnik) {
+        return izostanciRepository.findByKorisnik(korisnik);
+    }
     
 }
