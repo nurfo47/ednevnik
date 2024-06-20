@@ -83,8 +83,9 @@ public class izostanciController {
         // Dobiti korisnika preko username
         Korisnik korisnik = korisnikService.findKorisnikByUsername(username);
         
+        
         // Dobiti ocjene za predmete
-        List<Izostanci> izostanci = izostanciService.findAllIzostanci();
+        List<Izostanci> izostanci = izostanciService.findIzostanciByKorisnik(korisnik);
         
         model.addAttribute("korisnik", korisnik);
         model.addAttribute("izostanci", izostanci);
