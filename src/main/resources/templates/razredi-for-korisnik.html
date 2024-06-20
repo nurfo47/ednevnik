@@ -28,7 +28,7 @@
             
             <!--navbar profil nastavnika-->
                 <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">POČETNA</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/razredi}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RAZREDI</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/razredi/moji-razredi}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RAZREDI</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">PREDMETI</a></li>
                 <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RASPORED</a></li>
             </ul>
