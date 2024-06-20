@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tfb.ednevnik.service.ocjeneService;
 import com.tfb.ednevnik.service.predmetService;
+import com.tfb.ednevnik.service.razredService;
 import com.tfb.ednevnik.model.Korisnik;
 import com.tfb.ednevnik.model.Ocjene;
 import com.tfb.ednevnik.model.Predmet;
+import com.tfb.ednevnik.model.Razred;
 import com.tfb.ednevnik.service.korisnikService;
 
 @Controller
@@ -34,8 +36,11 @@ public class ocjeneController {
     @Autowired
     private predmetService predmetService;
 
+    @Autowired
+    private razredService razredService;
+
     //Prikaz forme za unos ocjene iz određenog predmeta
-    @GetMapping("/razredi/{razredId}/ucenici/{korisnikId}/ocjene/new")
+    @GetMapping("/razredi/{razredId}/ucenici/{korisnikId}/ocjene/add")
     public String showAddOcjenaForm(@PathVariable Long razredId, @PathVariable Long korisnikId, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -118,6 +123,26 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
     model.addAttribute("ocjene", ocjene);
     
     return "ocjene-predmeta-ucenika";
+}
+
+    //Ocjene ucenika za razrednika
+    @GetMapping("/razredi/ucenici/predmeti/ocjene")
+    public String listOcjeneForPredmetForRazrednik(@RequestParam("razredId") Long razredId, @RequestParam("korisnikId") Long korisnikId, @RequestParam("predmetId") Long predmetId, Model model) {
+        // Dohvati korisnika i predmet
+        Korisnik korisnik = korisnikService.findKorisnikById(korisnikId);
+        Predmet predmet = predmetService.getPredmetById(predmetId);
+        Razred razred = razredService.findById(razredId);
+        
+        // Dohvati sve ocjene za korisnika i predmet
+        List<Ocjene> ocjene = ocjeneService.findOcjeneByKorisnikAndPredmet(korisnik, predmet);
+        
+        // Pass the grades to the view
+        model.addAttribute("korisnik", korisnik);
+        model.addAttribute("predmet", predmet);
+        model.addAttribute("ocjene", ocjene);
+        model.addAttribute("razred", razred);
+        
+        return "razrednik-ocjene-ucenika";
 }
 
 }
