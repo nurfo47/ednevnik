@@ -51,7 +51,7 @@
                         <th>Ime</th>
                         <th>Prezime</th>
                         <th>Email</th>
-                        <th th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">Unos ocjene</th>
+                        <th>Ocjene</th>
                         <th th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">Izostanci</th>
                     </tr>
                 </thead>
@@ -60,8 +60,14 @@
                         <td th:text="${korisnik.ime}"></td>
                         <td th:text="${korisnik.prezime}"></td>
                         <td th:text="${korisnik.email}"></td>
-                        <td th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}"><a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{id}/ucenici/{korisnikId}/ocjene/new(id=${razred.id}, korisnikId=${korisnik.id})}">UNESI OCJENU</a></td>
-                        <td th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}"><a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/add(razredId=${razred.id}, ucenikId=${korisnik.id})}">UNESI IZOSTANAK</a></td>
+                        <td >
+                            <a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{id}/ucenici/{korisnikId}/ocjene/new(id=${razred.id}, korisnikId=${korisnik.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">UNESI</a>
+                            <a class="btn btn-light btn-outline-dark" href="">PREGLEDAJ</a>
+                        </td>
+                        <td th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">
+                            <a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/add(razredId=${razred.id}, ucenikId=${korisnik.id})}">UNESI</a>
+                            <a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/izostanci(razredId=${razred.id}, ucenikId=${korisnik.id})}">PREGLEDAJ</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
