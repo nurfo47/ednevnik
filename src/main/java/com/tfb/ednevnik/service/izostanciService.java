@@ -13,4 +13,5 @@ public interface izostanciService {
     Izostanci saveIzostanci(Izostanci izostanci);
     List<Izostanci> getIzostanciByKorisnik(Long korisnikId);
     List<Izostanci> findIzostanciByKorisnikAndRazred(Korisnik korisnik, Razred razred);
+    List<Izostanci> findIzostanciByKorisnik(Korisnik korisnik);
 }
