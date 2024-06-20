@@ -69,7 +69,7 @@ public class izostanciController {
 
     //List izostanci za ucenika
     @GetMapping("/user-dashboard/izostanci")
-    public String listOcjeneForPredmetForUcenik(Model model) {
+    public String listIzostanciForUcenik(Model model) {
         // Autentikacija korisnika
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = null;
@@ -84,11 +84,28 @@ public class izostanciController {
         Korisnik korisnik = korisnikService.findKorisnikByUsername(username);
         
         
-        // Dobiti ocjene za predmete
+        // Dobiti listu izostanaka
         List<Izostanci> izostanci = izostanciService.findIzostanciByKorisnik(korisnik);
         
         model.addAttribute("korisnik", korisnik);
         model.addAttribute("izostanci", izostanci);
         return "ucenik-izostanci";
     }
+
+    //List izostanci by razred for razrednik
+    @GetMapping("/razred/{razredId}/ucenici/{korisnikId}/izostanci")
+    public String listIzostanciForRazrednik(@PathVariable Long razredId, @PathVariable Long korisnikId, Model model) {
+        Korisnik ucenik = korisnikService.findKorisnikById(korisnikId);
+        // Dobiti listu izostanaka
+        List<Izostanci> izostanci = izostanciService.getIzostanciByKorisnik(korisnikId);
+        
+        model.addAttribute("ucenik", ucenik);
+        model.addAttribute("razredId",razredId);
+        model.addAttribute("ucenikId", korisnikId);
+        model.addAttribute("izostanci", izostanci);
+           
+        return "razrednik-izostanci-list";
+    }
+
+    
 }
