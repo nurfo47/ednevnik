@@ -35,10 +35,14 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
         http.csrf(c -> c.disable())
-        .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard", "/registration").hasAuthority("ROLE_ADMIN")
+        .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard", "/registration", "/korisnici-nastavnik",
+         "/korisnici-ucenik", "/korisnici-razrednik", "/predmeti", "/add-predmeti", "/razredi", "/add-razred", "/razredi/assign-predmeti",
+          "/assign-razredi", "/assign-predmeti", "/razred/{id}/ucenici", "/razred/{razredId}/ucenici/{korisnikId}/izostanci",
+          "/razredi/addKorisnici/{id}" ).hasAuthority("ROLE_ADMIN")
         .requestMatchers("/user-dashboard").hasAuthority("ROLE_UCENIK")
-        .requestMatchers("/profesor-dashboard").hasAuthority("ROLE_NASTAVNIK")
-        .requestMatchers("/razrednik-dashboard").hasAuthority("ROLE_RAZREDNIK")
+        .requestMatchers("/profesor-dashboard", "/profesor-dashboard/predmeti", "/razredi/moji-razredi",
+        "/razredi/{razredId}/ucenici/{korisnikId}/ocjene/add").hasAuthority("ROLE_NASTAVNIK")
+        .requestMatchers("/razrednik-dashboard", "/razred/{razredId}/ucenici/{korisnikId}/add", "/razred/{razredId}/ucenici/{korisnikId}/izostanci").hasAuthority("ROLE_RAZREDNIK")
         .requestMatchers("/css/**","/javascript/**").permitAll()
         .anyRequest().authenticated())
 
