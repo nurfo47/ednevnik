@@ -54,7 +54,7 @@
                     <div class="card-body">
                         <h4 class="mb-2" th:text="${predmet.naziv}"></h4>
                         <div class="mt-auto">
-                            <a th:href="@{/profesor-dashboard/predmeti}"  class="btn btn-light btn-outline-dark">PREGLED</a>
+                            <a th:href="@{/{korisnikId}/predmeti/{predmetId}/ocjene(korisnikId=${korisnik.id}, predmetId=${predmet.id})}"  class="btn btn-light btn-outline-dark">PREGLED</a>
                         </div>
                     </div>
                 </div>
