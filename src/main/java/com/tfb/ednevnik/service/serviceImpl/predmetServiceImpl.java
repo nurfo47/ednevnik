@@ -45,6 +45,11 @@ public class predmetServiceImpl implements predmetService{
     public List<Predmet> findAllByRazredId(Long razredId) {
         return predmetRepository.findByRazredi_Id(razredId);
     }
+
+    @Override
+    public Predmet findByKorisnikId(Long korisnikId) {
+        return predmetRepository.findByKorisnikId(korisnikId);
+    }
    
     
 }
