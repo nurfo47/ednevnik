@@ -58,6 +58,11 @@
                         <td th:text="${ocjena.oblast}"></td>
                         <td th:text="${#temporals.format(ocjena.datum, 'dd-MM-yyyy')}"></td>
                     </tr>
+                    <tr>
+                        <th>Prosječna ocjena:</th>
+                        <th></th>
+                        <th class="text-center"><span th:text="${averageOcjena != null ? #numbers.formatDecimal(averageOcjena, 1, 2) : 'N/A'}"></span></th>
+                    </tr>
                 </tbody>
             </table>
         </div>
