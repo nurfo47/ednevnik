@@ -56,6 +56,24 @@
                         <td th:text="${izostanci.opravdanost}"></td>
                         <td th:text="${izostanci.razlog}"></td>
                     </tr>
+
+                    <tr>
+                        <th>Ukupan broj opravdanih izostanaka</th>
+                        <th></th>
+                        <th class="text-center"><b><span th:text="${countOpravdaniIzostanci}"></span></b></th>
+                    </tr>
+
+                    <tr>
+                        <th>Ukupan broj neopravdanih izostanaka</th>
+                        <th></th>
+                        <th class="text-center"><b><span th:text="${countNeopravdaniIzostanci}"></span></b></th>
+                    </tr>
+
+                    <tr>
+                        <th>Ukupan broj izostanaka</th>
+                        <th></th>
+                        <th class="text-center"><b><span th:text="${countIzostanci}"></span></b></th>
+                    </tr>
                 </tbody>
             </table>
         </div>
