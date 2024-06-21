@@ -53,6 +53,18 @@ public class predmetController {
         return "predmeti-for-korisnik";
     }
 
+    //Prikaz predemta za ucenike u razredu kojima nastavnik predaje
+    @GetMapping("/{korisnikId}/predmeti")
+    public String listRazredniPredmeti(@PathVariable Long korisnikId, Model model, Authentication authentication) {
+        String loggedUsername = authentication.getName();
+        Korisnik ucenik = korisnikService.findKorisnikById(korisnikId);
+        Korisnik korisnik = korisnikService.findKorisnikByUsername(loggedUsername);
+        Set<Predmet> predmeti = korisnik.getPredmeti();
+        model.addAttribute("predmeti", predmeti);
+        model.addAttribute("korisnik", ucenik);
+        return "predmeti-for-korisnik";
+    }
+
     @GetMapping("/razredi/{razredId}/ucenici/{korisnikId}/predmeti")
     public String listPredmetiForUcenikInRazred(@PathVariable Long razredId, @PathVariable Long korisnikId, Model model) {
         List<Predmet> predmeti = predmetService.findAllByRazredId(razredId);
