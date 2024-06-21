@@ -29,7 +29,6 @@
             <!--navbar profil nastavnika-->
                 <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">POČETNA</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/razredi/moji-razredi}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RAZREDI</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">PREDMETI</a></li>
                 <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RASPORED</a></li>
             </ul>
             <ul class="navbar-nav">
@@ -48,15 +47,15 @@
 </nav>  
        <!-- Dashboard Content -->
        <div class="container mt-4">
-        <h2 class="display-5 mb-4">RAZREDI</h2>
+        <h2 class="text-center display-5 mb-4">RAZREDI</h2>
         <div class="row justify-content-center">
             <div th:each="razred: ${razredi}" class=" col-sm-12 col-md-4 col-lg-3 mb-4">
-                <div class="card w-75 text-center">
+                <div class="card text-center">
                     <div class="card-header">
                         <p class="mb-2" th:text="${razred.skolskaGodina}"></p>
                     </div>
                     <div class="card-body d-flex flex-column">
-                        <h4 class="card-title" th:text="${razred.naziv}"></h4>
+                        <h4 class="card-title display-6" th:text="${razred.naziv}"></h4>
                     </div>
                     <div class="card-footer text-muted">
                         <a th:href="@{/razredi/{id}/ucenici(id=${razred.id})}" class="btn btn-light btn-outline-dark">PREGLED UČENIKA</a>

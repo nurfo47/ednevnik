@@ -28,7 +28,6 @@
             <!--navbar profil nastavnika-->
                 <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">POČETNA</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/razredi/moji-razredi}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RAZREDI</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">PREDMETI</a></li>
                 <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RASPORED</a></li>
             </ul>
             <ul class="navbar-nav">
@@ -50,9 +49,9 @@
         <h2 class="display-5 mb-4">MOJI PREDMETI</h2>
         <div class="row">
             <div th:each="predmet: ${predmeti}" class="col-sm-12 col-md-4 col-lg-3 mb-4">
-                <div class="card w-75 text-center">
+                <div class="card text-center">
                     <div class="card-body">
-                        <h4 class="mb-2" th:text="${predmet.naziv}"></h4>
+                        <h4 class="mb-4 display-6" th:text="${predmet.naziv}"></h4>
                         <div class="mt-auto">
                             <a th:href="@{/{korisnikId}/predmeti/{predmetId}/ocjene(korisnikId=${korisnik.id}, predmetId=${predmet.id})}"  class="btn btn-light btn-outline-dark">PREGLED</a>
                         </div>

@@ -21,7 +21,6 @@
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">POČETNA</a></li>
                     <li class="nav-item"><a class="nav-link" th:href="@{/razredi/moji-razredi}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RAZREDI</a></li>
-                    <li class="nav-item"><a class="nav-link" th:href="@{/profesor-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">PREDMETI</a></li>
                     <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">RASPORED</a></li>
                 </ul>
             <ul class="navbar-nav">
@@ -48,17 +47,6 @@
                         <i class="fas fa-chalkboard-teacher fa-5x mb-4"></i>
                         <div class="mt-auto">
                             <a th:href="@{/razredi/moji-razredi}" class="btn btn-dark float-start">PREGLED</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card text-center">
-                    <div class="card-body d-flex flex-column">
-                        <h4 class="card-title mb-4">PREDMETI</h4>
-                        <i class="fas fa-book fa-5x mb-4"></i>
-                        <div class="mt-auto">
-                            <a th:href="@{/profesor-dashboard/predmeti}"  class="btn btn-dark float-start">PREGLED</a>
                         </div>
                     </div>
                 </div>
