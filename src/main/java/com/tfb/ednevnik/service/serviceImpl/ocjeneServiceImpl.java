@@ -36,5 +36,12 @@ public class ocjeneServiceImpl implements ocjeneService {
     public List<Ocjene> findOcjeneByKorisnikAndPredmet(Korisnik korisnik, Predmet predmet) {
         return ocjeneRepository.findByKorisnikAndPredmet(korisnik, predmet);
     }
+
+    @Override
+    public Double findAverageOcjenaByPredmetIdAndKorisnikId(Long predmetId, Long korisnikId) {
+        return ocjeneRepository.findAverageOcjenaByPredmetIdAndKorisnikId(predmetId, korisnikId);
+    }
+
+    
     
 }
