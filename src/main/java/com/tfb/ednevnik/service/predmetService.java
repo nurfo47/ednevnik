@@ -12,5 +12,6 @@ public interface predmetService {
     Set<Predmet> findAllById(Long predmetId);
     List<Predmet> findPredmetByKorisnik(Long korisnikId);
     List<Predmet> findAllByRazredId(Long razredId);
+    Predmet findByKorisnikId(Long korisnikId);
     
 }
