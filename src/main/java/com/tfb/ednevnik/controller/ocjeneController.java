@@ -88,11 +88,13 @@ public class ocjeneController {
         
         // Dohvati sve ocjene za korisnika i predmet
         List<Ocjene> ocjene = ocjeneService.findOcjeneByKorisnikAndPredmet(korisnik, predmet);
+        Double averageOcjena = ocjeneService.findAverageOcjenaByPredmetIdAndKorisnikId(predmetId, korisnikId);
         
         // Pass the grades to the view
         model.addAttribute("korisnik", korisnik);
         model.addAttribute("predmet", predmet);
         model.addAttribute("ocjene", ocjene);
+        model.addAttribute("averageOcjena", averageOcjena);
         
         return "ocjene-predmeta";
 }
@@ -117,10 +119,14 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
     
     // Dobiti ocjene za predmete
     List<Ocjene> ocjene = ocjeneService.findOcjeneByKorisnikAndPredmet(korisnik, predmet);
+    // Get the average ocjena for the predmet
+    Long korisnikId = korisnik.getId();
+    Double averageOcjena = ocjeneService.findAverageOcjenaByPredmetIdAndKorisnikId(predmetId, korisnikId);
     
     model.addAttribute("korisnik", korisnik);
     model.addAttribute("predmet", predmet);
     model.addAttribute("ocjene", ocjene);
+    model.addAttribute("averageOcjena", averageOcjena);
     
     return "ocjene-predmeta-ucenika";
 }
@@ -135,12 +141,15 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
         
         // Dohvati sve ocjene za korisnika i predmet
         List<Ocjene> ocjene = ocjeneService.findOcjeneByKorisnikAndPredmet(korisnik, predmet);
+        // Get the average ocjena for the predmet
+        Double averageOcjena = ocjeneService.findAverageOcjenaByPredmetIdAndKorisnikId(predmetId, korisnikId);
         
         // Pass the grades to the view
         model.addAttribute("korisnik", korisnik);
         model.addAttribute("predmet", predmet);
         model.addAttribute("ocjene", ocjene);
         model.addAttribute("razred", razred);
+        model.addAttribute("averageOcjena", averageOcjena);
         
         return "razrednik-ocjene-ucenika";
 }
@@ -155,11 +164,14 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
         
         // Dohvati sve ocjene za korisnika i predmet
         List<Ocjene> ocjene = ocjeneService.findOcjeneByKorisnikAndPredmet(korisnik, predmet);
+        // Get the average ocjena for the predmet
+        Double averageOcjena = ocjeneService.findAverageOcjenaByPredmetIdAndKorisnikId(predmetId, korisnikId);
         
         // Pass the grades to the view
         model.addAttribute("korisnik", korisnik);
         model.addAttribute("predmet", predmet);
         model.addAttribute("ocjene", ocjene);
+        model.addAttribute("averageOcjena", averageOcjena);
            
            return "nastavnik-ocjene-ucenika";
    }
