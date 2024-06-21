@@ -86,9 +86,18 @@ public class izostanciController {
         
         // Dobiti listu izostanaka
         List<Izostanci> izostanci = izostanciService.findIzostanciByKorisnik(korisnik);
+        //Brojac svih izostanaka
+        long countIzostanci = izostanciService.countIzostanciByKorisnikId(korisnik.getId());
+        //Brojac opravdanih izostanaka
+        long countOpravdaniIzostanci = izostanciService.countOpravdaniIzostanciByKorisnikId(korisnik.getId());
+        //Brojac neopravdanih izostanaka
+        long countNeopravdaniIzostanci = izostanciService.countNeopravdaniIzostanciByKorisnikId(korisnik.getId());
         
         model.addAttribute("korisnik", korisnik);
         model.addAttribute("izostanci", izostanci);
+        model.addAttribute("countIzostanci", countIzostanci);
+        model.addAttribute("countOpravdaniIzostanci", countOpravdaniIzostanci);
+        model.addAttribute("countNeopravdaniIzostanci", countNeopravdaniIzostanci);
         return "ucenik-izostanci";
     }
 
@@ -98,11 +107,20 @@ public class izostanciController {
         Korisnik ucenik = korisnikService.findKorisnikById(korisnikId);
         // Dobiti listu izostanaka
         List<Izostanci> izostanci = izostanciService.getIzostanciByKorisnik(korisnikId);
-        
+        //Brojac svih izostanaka
+        long countIzostanci = izostanciService.countIzostanciByKorisnikId(korisnikId);
+        //Brojac opravdanih izostanaka
+        long countOpravdaniIzostanci = izostanciService.countOpravdaniIzostanciByKorisnikId(korisnikId);
+        //Brojac neopravdanih izostanaka
+        long countNeopravdaniIzostanci = izostanciService.countNeopravdaniIzostanciByKorisnikId(korisnikId);
+
         model.addAttribute("ucenik", ucenik);
         model.addAttribute("razredId",razredId);
         model.addAttribute("ucenikId", korisnikId);
         model.addAttribute("izostanci", izostanci);
+        model.addAttribute("countIzostanci", countIzostanci);
+        model.addAttribute("countOpravdaniIzostanci", countOpravdaniIzostanci);
+        model.addAttribute("countNeopravdaniIzostanci", countNeopravdaniIzostanci);
            
         return "razrednik-izostanci-list";
     }
