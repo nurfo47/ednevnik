@@ -127,7 +127,7 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
 
     //Ocjene ucenika za razrednika
     @GetMapping("/razredi/ucenici/predmeti/ocjene")
-    public String listOcjeneForPredmetForRazrednik(@RequestParam("razredId") Long razredId, @PathVariable Long korisnikId, @RequestParam("predmetId") Long predmetId, Model model) {
+    public String listOcjeneForPredmetForRazrednik(@RequestParam("razredId") Long razredId, @RequestParam("korisnikId") Long korisnikId, @RequestParam("predmetId") Long predmetId, Model model) {
         // Dohvati korisnika i predmet
         Korisnik korisnik = korisnikService.findKorisnikById(korisnikId);
         Predmet predmet = predmetService.getPredmetById(predmetId);
