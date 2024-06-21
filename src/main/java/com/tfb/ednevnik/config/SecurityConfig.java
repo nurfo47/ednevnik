@@ -37,12 +37,12 @@ public class SecurityConfig {
         http.csrf(c -> c.disable())
         .authorizeHttpRequests(request -> request.requestMatchers("/admin-dashboard", "/registration", "/korisnici-nastavnik",
          "/korisnici-ucenik", "/korisnici-razrednik", "/predmeti", "/add-predmeti", "/razredi", "/add-razred", "/razredi/assign-predmeti",
-          "/assign-razredi", "/assign-predmeti", "/razred/{id}/ucenici", "/razred/{razredId}/ucenici/{korisnikId}/izostanci",
+          "/assign-razredi", "/assign-predmeti", "/razred/{id}/ucenici",
           "/razredi/addKorisnici/{id}" ).hasAuthority("ROLE_ADMIN")
         .requestMatchers("/user-dashboard").hasAuthority("ROLE_UCENIK")
         .requestMatchers("/profesor-dashboard", "/profesor-dashboard/predmeti", "/razredi/moji-razredi",
         "/razredi/{razredId}/ucenici/{korisnikId}/ocjene/add").hasAuthority("ROLE_NASTAVNIK")
-        .requestMatchers("/razrednik-dashboard", "/razred/{razredId}/ucenici/{korisnikId}/add", "/razred/{razredId}/ucenici/{korisnikId}/izostanci").hasAuthority("ROLE_RAZREDNIK")
+        .requestMatchers("/razrednik-dashboard", "/razred/{razredId}/ucenici/{korisnikId}/add").hasAuthority("ROLE_RAZREDNIK")
         .requestMatchers("/css/**","/javascript/**").permitAll()
         .anyRequest().authenticated())
 
