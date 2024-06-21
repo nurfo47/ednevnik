@@ -46,5 +46,20 @@ public class izostanciServiceImpl implements izostanciService {
     public List<Izostanci> findIzostanciByKorisnik(Korisnik korisnik) {
         return izostanciRepository.findByKorisnik(korisnik);
     }
+    //Brojac svih izostanaka jednog korisnika
+    @Override
+    public long countIzostanciByKorisnikId(Long korisnikId) {
+        return izostanciRepository.countIzostanciByKorisnikIdAndTipUcenik(korisnikId);
+    }
+    //Brojac opravdanih izostanaka
+    @Override
+    public long countOpravdaniIzostanciByKorisnikId(Long korisnikId) {
+        return izostanciRepository.countOpravdaniIzostanciByKorisnikId(korisnikId);
+    }
+
+    @Override
+    public long countNeopravdaniIzostanciByKorisnikId(Long korisnikId) {
+        return izostanciRepository.countNeopravdaniIzostanciByKorisnikId(korisnikId);
+    }
     
 }
