@@ -12,5 +12,8 @@ public interface ocjeneService {
     void saveOcjena(Ocjene ocjena);
     List<Ocjene> getOcjeneByKorisnik(Long korisnikId);
     List<Ocjene> findOcjeneByKorisnikAndPredmet(Korisnik korisnik, Predmet predmet);
+
+    //Get average ocjena for predmet
+    Double findAverageOcjenaByPredmetIdAndKorisnikId(Long predmetId, Long korisnikId);
     
 }
