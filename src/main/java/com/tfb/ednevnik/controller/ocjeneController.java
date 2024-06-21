@@ -127,7 +127,7 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
 
     //Ocjene ucenika za razrednika
     @GetMapping("/razredi/ucenici/predmeti/ocjene")
-    public String listOcjeneForPredmetForRazrednik(@RequestParam("razredId") Long razredId, @RequestParam("korisnikId") Long korisnikId, @RequestParam("predmetId") Long predmetId, Model model) {
+    public String listOcjeneForPredmetForRazrednik(@RequestParam("razredId") Long razredId, @PathVariable Long korisnikId, @RequestParam("predmetId") Long predmetId, Model model) {
         // Dohvati korisnika i predmet
         Korisnik korisnik = korisnikService.findKorisnikById(korisnikId);
         Predmet predmet = predmetService.getPredmetById(predmetId);
@@ -144,5 +144,24 @@ public String listOcjeneForPredmetForUcenik(@PathVariable Long predmetId, Model 
         
         return "razrednik-ocjene-ucenika";
 }
+
+       //Ocjene ucenika za nastavnika
+       @GetMapping("/{korisnikId}/predmeti/{predmetId}/ocjene")
+       public String listOcjeneForPredmetForNastavnik(@PathVariable Long korisnikId, @PathVariable Long predmetId, Model model) {
+           
+           // Dohvati korisnika i predmet
+        Korisnik korisnik = korisnikService.findKorisnikById(korisnikId);
+        Predmet predmet = predmetService.getPredmetById(predmetId);
+        
+        // Dohvati sve ocjene za korisnika i predmet
+        List<Ocjene> ocjene = ocjeneService.findOcjeneByKorisnikAndPredmet(korisnik, predmet);
+        
+        // Pass the grades to the view
+        model.addAttribute("korisnik", korisnik);
+        model.addAttribute("predmet", predmet);
+        model.addAttribute("ocjene", ocjene);
+           
+           return "nastavnik-ocjene-ucenika";
+   }
 
 }
