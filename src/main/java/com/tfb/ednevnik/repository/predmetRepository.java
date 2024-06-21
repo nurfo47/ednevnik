@@ -13,6 +13,6 @@ public interface predmetRepository extends JpaRepository<Predmet, Long>{
     @SuppressWarnings("null")
     List<Predmet> findKorisnikById(Long korisnikId);
     List<Predmet> findByRazredi_Id(Long razredId);
-
+    Predmet findByKorisnikId(Long korisnikId);
     
 }
