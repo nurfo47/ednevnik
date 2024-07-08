@@ -10,9 +10,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tfb.ednevnik.model.Izostanci;
 import com.tfb.ednevnik.model.Korisnik;
@@ -123,6 +125,28 @@ public class izostanciController {
         model.addAttribute("countNeopravdaniIzostanci", countNeopravdaniIzostanci);
            
         return "razrednik-izostanci-list";
+    }
+
+    @GetMapping("/izostanak/edit/{id}")
+    public String showEditIzostanciForm(@PathVariable Long id, Model model) {
+        Izostanci izostanci= izostanciService.getById(id);
+        model.addAttribute("izostanci", izostanci);
+        return "edit-izostanci";
+
+    }
+
+    @PostMapping("/izostanak/edit/{id}")
+    public String editIzostanci(@PathVariable Long id, @ModelAttribute("izostanci") Izostanci updatedIzostanci, RedirectAttributes redirectAttributes) {
+        Izostanci izostanci = izostanciService.getById(id);
+        if (izostanci != null){
+            izostanci.setDatum(updatedIzostanci.getDatum());
+            izostanci.setRazlog(updatedIzostanci.getRazlog());
+            izostanci.setOpravdanost(updatedIzostanci.getOpravdanost());
+        }
+            izostanciService.updateIzostanci(izostanci);
+            redirectAttributes.addFlashAttribute("message", "Uspješno izmjenjeno");
+        
+        return "redirect:/razrednik-dashboard";
     }
 
     
