@@ -25,4 +25,5 @@ public interface korisnikService {
     List<Korisnik> findByPredmet(Predmet predmet);
     void assignRazrediToKorisnik(Long korisnikId, List<Long> razredId);
     List<Razred> getAssignedRazredi(Korisnik korisnik);
+    List<Korisnik> findKorisniciByRazred(Razred razred);
 }
