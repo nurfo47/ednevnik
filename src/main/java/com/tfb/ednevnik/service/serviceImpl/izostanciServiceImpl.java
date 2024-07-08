@@ -61,5 +61,15 @@ public class izostanciServiceImpl implements izostanciService {
     public long countNeopravdaniIzostanciByKorisnikId(Long korisnikId) {
         return izostanciRepository.countNeopravdaniIzostanciByKorisnikId(korisnikId);
     }
+
+    @Override
+    public Izostanci getById(Long id) {
+        return izostanciRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void updateIzostanci(Izostanci izostanci) {
+        izostanciRepository.save(izostanci);
+    }
     
 }
