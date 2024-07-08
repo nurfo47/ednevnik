@@ -11,6 +11,8 @@ public interface izostanciService {
     Set<Izostanci> getAllIzostanci(Long id);
     List<Izostanci> findAllIzostanci();
     Izostanci saveIzostanci(Izostanci izostanci);
+    Izostanci getById(Long id);
+    void updateIzostanci(Izostanci izostanci);
     List<Izostanci> getIzostanciByKorisnik(Long korisnikId);
     List<Izostanci> findIzostanciByKorisnikAndRazred(Korisnik korisnik, Razred razred);
     List<Izostanci> findIzostanciByKorisnik(Korisnik korisnik);
