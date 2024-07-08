@@ -42,6 +42,16 @@ public class ocjeneServiceImpl implements ocjeneService {
         return ocjeneRepository.findAverageOcjenaByPredmetIdAndKorisnikId(predmetId, korisnikId);
     }
 
+    @Override
+    public void updateOcjena(Ocjene ocjena) {
+        ocjeneRepository.save(ocjena);
+    }
+
+    @Override
+    public Ocjene getById(Long id) {
+        return ocjeneRepository.findById(id).orElse(null);
+    }
+
     
     
 }
