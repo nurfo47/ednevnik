@@ -21,31 +21,32 @@
         <div class="alert alert-danger alert-message d-none" role="alert" id="alert-message" th:if="${param.error}">
             Pogrešan unos! Pokušajte ponovo.
         </div>
-<div class="container">
-        <div class="login-form">
-            <h1 class="text-center mb-5">Prijava</h1>
-            <form th:action="@{/login}" method="POST" role="form">
-                <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="username" name="username" required placeholder="Username">
-                    <label for="username">Korisničko ime</label>
-                    
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-8 col-lg-6">
+                    <div class="login-form">
+                        <h1 class="text-center mb-5 display-5">Prijava</h1>
+                        <form th:action="@{/login}" method="POST" role="form">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="username" name="username" required placeholder="Username">
+                                <label for="username">Korisničko ime</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
+                                <label for="password">Lozinka</label>
+                            </div>
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
+                                <label class="form-check-label" for="rememberMe">Zapamti me</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-light btn-outline-dark w-100 mb-4">Prijavi se</button>
+                            <p class="text-center">Ukoliko ste zaboravili lozinku, molimo Vas kontaktirajte administratora sistema. <a href="">nurfet.mehulic00@gmail.com</a></p>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-floating mb-4">
-                    <input type="password" class="form-control" id="password" name="password" required placeholder="Password">
-                    <label for="password">Lozinka</label>
-                    
-                </div>
-                <div class="mb-5 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
-                    <label class="form-check-label" for="rememberMe">Zapamti me</label>
-                </div>
-                
-                <button type="submit" class="btn btn-light w-100 mb-3 btn-outline-dark">Prijavi se</button>
-                <p class="text-center">Ukoliko ste zaboravili lozinku, molimo Vas kontaktirajte administratora sistema. <a href="">nurfet.mehulic00@gmail.com</a></p>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
     <script>
         // Example to show the alert message (for testing purposes)
