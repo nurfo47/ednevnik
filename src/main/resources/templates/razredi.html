@@ -62,7 +62,7 @@
                         <td>
                             <ul class="list-group list-group-horizontal mb-4">
                                 <li class="list-group-item" >
-                                    <span th:each="korisnik : ${razred.profesori}" th:if="${korisnik.tip == 'RAZREDNIK'}">
+                                    <span th:each="korisnik : ${korisnik}" th:if="${korisnik.tip == 'RAZREDNIK'}">
                                         <span th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}"></span>
                                 </li>
                             </ul>
