@@ -33,11 +33,13 @@ public class razredController {
     @Autowired
     private predmetService predmetService;
 
+    //Otvaranje stranice za dodavanje razreda
     @GetMapping("/add-razred")
     public String addRazredPage() {
         return "/add-razred";
     }
 
+    //Spremanje podataka iz forme za dodavanje razreda
     @PostMapping("/add-razred")
     public String saveRazred(@ModelAttribute("razred") Razred razred, Model model) {
         razredService.saveRazred(razred);
@@ -46,6 +48,7 @@ public class razredController {
         return "redirect:/razredi?success";
     }
 
+    //Prikaz svih razreda 
     @GetMapping("/razredi")
     public String listAllRazredi(Long razredId, Model model) {
         List<Razred> razredi = razredService.getAllRazred();
@@ -53,17 +56,18 @@ public class razredController {
         return "razredi";
     }
         
-    
+    //Prikaz forme za dodavanje korisnika (ucenika) u razred
      @GetMapping("/razredi/addKorisnici/{id}")
     public String showAddKorisniciToRazred(@PathVariable Long id, Model model) {
         Razred razred = razredService.findById(id);
         List<Korisnik> korisnici = korisnikService.findByTip("UCENIK");
-        model.addAttribute("razredId", id); // Pass only the ID
-        model.addAttribute("razred", razred); // Pass the entire Razred object if needed
+        model.addAttribute("razredId", id); // Proslijedi ID
+        model.addAttribute("razred", razred); // Proslijedi objekat Razred
         model.addAttribute("korisnici", korisnici);
         return "dodaj-u-razred";
     }
 
+    //Spremanje korisnika koji su odabrani za dodavanje u razred
     @PostMapping("/razredi/addKorisnici")
     public String addKorisniciToRazred(@RequestParam Long razredId, @RequestParam List<Long> korisnikIds) {
         razredService.addKorisniciToRazred(razredId, korisnikIds);
