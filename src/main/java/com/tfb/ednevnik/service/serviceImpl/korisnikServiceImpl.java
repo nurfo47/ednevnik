@@ -157,6 +157,11 @@ public class korisnikServiceImpl implements korisnikService{
        return razredRepository.findByProfesori(korisnik);
     }
 
+    @Override
+    public List<Korisnik> findKorisniciByRazred(Razred razred) {
+        return korisnikRepository.findByRazred(razred);
+    }
+
 }
     
 
