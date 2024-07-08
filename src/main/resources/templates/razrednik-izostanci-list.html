@@ -55,6 +55,7 @@
                         <th>Datum</th>
                         <th>Opravdanost</th>
                         <th>Razlog</th>
+                        <th th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">Uredi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +63,7 @@
                         <td th:text="${#temporals.format(izostanci.datum, 'dd-MM-yyyy')}"></td>
                         <td th:text="${izostanci.opravdanost}"></td>
                         <td th:text="${izostanci.razlog}"></td>
+                        <td><a class="btn btn-light btn-outline-dark" th:href="@{/izostanak/edit/{id}(id=${izostanci.id})}" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">UREDI</a></td>
                     </tr>
 
                     <tr>
