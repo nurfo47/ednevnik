@@ -41,9 +41,7 @@
 </nav>  
        <!-- Dashboard Content -->
     <div class="container mt-5">
-        <div class="row table-responsive">
-            <h3>Razrednik: <span th:if="${razrednik != null}" th:text="${razrednik.ime + ' ' + razrednik.prezime}"></span>
-                            <span th:if="${razrednik == null}">No Razrednik Assigned</span></h3>
+        <div class="row table-responsive">                 
             <table class="table table-bordered">
                 <thead>
                     <tr>
