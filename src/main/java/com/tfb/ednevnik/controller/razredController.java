@@ -50,7 +50,7 @@ public class razredController {
 
     //Prikaz svih razreda 
     @GetMapping("/razredi")
-    public String listAllRazredi(Long razredId, Model model) {
+    public String listAllRazredi(Model model) {
         List<Razred> razredi = razredService.getAllRazred();
         model.addAttribute("razredi", razredi);
         return "razredi";
