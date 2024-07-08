@@ -15,7 +15,7 @@ import com.tfb.ednevnik.service.razredService;
 
 @Service
 public class razredServiceImpl implements razredService{
-    
+    //Automatsko pronalazenje beana repozitorija i povezivanje s kreiranom varijablom
     @Autowired
     private razredRepository razredRepository;
     @Autowired
@@ -23,12 +23,14 @@ public class razredServiceImpl implements razredService{
     @Autowired
     private predmetRepository predmetRepository;
 
+    //Nadjacana metoda iz roditeljske klase za listu svih razreda
     @Override
     public List<Razred> getAllRazred() {
         List<Razred> razredi = razredRepository.findAll();
         return razredi;
     }
 
+    //Nadjacana metoda roditeljske klase za pronalazak razreda po id-u
     @Override
     public Optional<Razred> getRazredById(Long id) {
         return razredRepository.findById(id);
@@ -92,6 +94,8 @@ public class razredServiceImpl implements razredService{
         return razredRepository.findByProfesori(korisnik);
     }
 
+    //Nadjacana metoda koja poziva metodu iz repozitorija
+    //koja je postavljena upotrebom query anotacije
     @Override
     public List<Razred> findAllWithRazrednik(long id) {
         return razredRepository.findAllWithRazrednik(id);
