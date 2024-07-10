@@ -91,4 +91,12 @@ public class ocjeneController {
         return "redirect:/" + ocjene.getKorisnik().getId() + "/predmeti-ocjene";
     }
 
+    @GetMapping("/delete/{ocjenaId}")
+    public String deleteOcjena(@PathVariable Long ocjenaId) {
+        Ocjene ocjene = ocjeneService.getById(ocjenaId);
+        ocjeneService.deleteOcjenaById(ocjenaId);
+        return "redirect:/" + ocjene.getKorisnik().getId() + "/predmeti-ocjene";
+    }
+
+
 }
