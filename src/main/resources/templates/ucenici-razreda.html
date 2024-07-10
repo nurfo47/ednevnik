@@ -65,14 +65,14 @@
                             <div class="mt-auto" >
                                 <a th:href="@{/toggleSActivation/{id}(id=${korisnik.id})}" 
                                    th:classappend="
-                                          ${korisnik.active == true} ? 'btn btn-md btn-danger btn-outline-dark' : 'btn btn-md btn-success btn-outline-dark'">
+                                          ${korisnik.active == true} ? 'btn btn-md btn-danger' : 'btn btn-md btn-success'">
                                    <span th:text="${korisnik.active ? 'Deaktivacija' : 'Aktivacija'}">
                                    </span>
                                 </a>
                             </div>
                     </td>
-                    <td><a class="btn btn-light btn-outline-dark" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti(razredId=${razred.id}, korisnikId=${korisnik.id})}">Pregled</a></td>
-                    <td><a class="btn btn-light btn-outline-dark" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/izostanci(razredId=${razred.id}, ucenikId=${korisnik.id})}">Pregled</a></td>
+                    <td><a class="btn btn-light btn-outline-primary" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti(razredId=${razred.id}, korisnikId=${korisnik.id})}">Pregled</a></td>
+                    <td><a class="btn btn-light btn-outline-primary" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/izostanci(razredId=${razred.id}, ucenikId=${korisnik.id})}">Pregled</a></td>
                     
                         
                     </tr>

@@ -43,8 +43,8 @@
     <div class="container mt-5">
         <div class="row table-responsive">
             <div class="mt-auto">
-                <a th:href="@{/assign-predmeti}" class="btn btn-dark float-end mb-3">Dodijeli predmete</a>
-                <a th:href="@{/assign-razredi}" class="btn btn-dark float-start mb-3">Dodijeli razrede</a>
+                <a th:href="@{/assign-predmeti}" class="btn btn-light btn-outline-primary float-end mb-3">Dodijeli predmete</a>
+                <a th:href="@{/assign-razredi}" class="btn btn-light btn-outline-primary float-start mb-3">Dodijeli razrede</a>
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -75,7 +75,7 @@
                             <div class="mt-auto" >
                                 <a th:href="@{/toggleRActivation/{id}(id=${korisnik.id})}" 
                                    th:classappend="
-                                          ${korisnik.active == true} ? 'btn btn-md btn-danger btn-outline-dark' : 'btn btn-md btn-success btn-outline-dark'">
+                                          ${korisnik.active == true} ? 'btn btn-md btn-danger' : 'btn btn-md btn-success'">
                                    <span th:text="${korisnik.active ? 'Deaktivacija' : 'Aktivacija'}"></span>
                                 </a>
                             </div>

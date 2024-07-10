@@ -57,7 +57,7 @@
                         <td th:text="${ocjena.ocjena}"></td>
                         <td th:text="${ocjena.oblast}"></td>
                         <td th:text="${#temporals.format(ocjena.datum, 'dd-MM-yyyy')}"></td>
-                        <td><a class="btn btn-light btn-outline-dark" th:href="@{/ocjene/edit/{id}(id=${ocjena.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">UREDI</a></td>
+                        <td><a class="btn btn-light btn-outline-success" th:href="@{/ocjene/edit/{id}(id=${ocjena.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">UREDI</a></td>
                     </tr>
                     <tr>
                         <th>Prosječna ocjena:</th>

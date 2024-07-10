@@ -43,8 +43,8 @@
     <div class="container mt-5">
         <div class="row table-responsive">
             <div class="mt-auto mb-2">
-                <a th:href="@{/add-razred}" class="btn btn-light btn-outline-dark float-end">DODAJ RAZREDE</a>
-                <a th:href="@{/razredi/assign-predmeti}" class="btn btn-light btn-outline-dark float-start">DODIJELI PREDMETE</a>
+                <a th:href="@{/add-razred}" class="btn btn-light btn-outline-success float-end">DODAJ RAZREDE</a>
+                <a th:href="@{/razredi/assign-predmeti}" class="btn btn-light btn-outline-primary float-start">DODIJELI PREDMETE</a>
             </div>
             <table class="table table-bordered">
                 <thead>
@@ -68,7 +68,7 @@
                             </ul>
                         </td>
                         <td>
-                            <a th:href="@{/razredi/addKorisnici/{id}(id=${razred.id})}" class="btn btn-light btn-outline-dark">DODAJ UČENIKE</a>
+                            <a th:href="@{/razredi/addKorisnici/{id}(id=${razred.id})}" class="btn btn-light btn-outline-success">DODAJ UČENIKE</a>
                         </td>
                     </tr>
                 </tbody>

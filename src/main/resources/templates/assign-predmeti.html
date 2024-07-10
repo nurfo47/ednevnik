@@ -48,7 +48,7 @@
                 <select class="form-control form-select-lg mt-4 mb-5" name="predmetId" multiple>
                     <option th:each="predmet : ${predmeti}" th:value="${predmet.id}" th:text="${predmet.naziv}"></option>
                 </select>
-                <button type="submit" class="btn btn-light btn-block btn-outline-dark float-end">Dodijeli predmete</button>
+                <button type="submit" class="btn btn-light btn-block btn-outline-success float-end">Dodijeli predmete</button>
             </div>
         </form>
 </div>

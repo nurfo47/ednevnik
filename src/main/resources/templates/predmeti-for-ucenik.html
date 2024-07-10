@@ -62,8 +62,8 @@
                         <h4 class="display-6" th:text="${predmet.naziv}"></h4>
                     </div>
                     <div class="mt-auto mb-3">
-                        <a th:href="@{/admin-dashboard/{korisnikId}/predmeti/{predmetId}/ocjene(korisnikId=${korisnikId}, predmetId=${predmet.id})}" class="btn btn-light btn-outline-dark" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">PREGLED OCJENA</a>
-                        <a th:href="@{/razredi/ucenici/predmeti/ocjene(razredId=${razredId}, korisnikId=${korisnikId}, predmetId=${predmet.id})}" class="btn btn-light btn-outline-dark" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">PREGLED OCJENA</a>
+                        <a th:href="@{/admin-dashboard/{korisnikId}/predmeti/{predmetId}/ocjene(korisnikId=${korisnikId}, predmetId=${predmet.id})}" class="btn btn-light btn-outline-primary" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">PREGLED OCJENA</a>
+                        <a th:href="@{/razredi/ucenici/predmeti/ocjene(razredId=${razredId}, korisnikId=${korisnikId}, predmetId=${predmet.id})}" class="btn btn-light btn-outline-primary" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">PREGLED OCJENA</a>
                     </div>
                 </div>
             </div>
