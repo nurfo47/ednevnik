@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Korisnici</title>
+        <title>Ucenici</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" th:href="@{/css/styles.css}">
         <!-- Font Awesome CSS -->
@@ -41,6 +41,7 @@
 </nav>  
        <!-- Dashboard Content -->
     <div class="container mt-5">
+        <h2 class="display-5 text-center mb-3">RAZRED <span th:text="${razred.naziv}"></span></h2>
         <div class="row table-responsive">                 
             <table class="table table-bordered">
                 <thead>
@@ -71,7 +72,7 @@
                                 </a>
                             </div>
                     </td>
-                    <td><a class="btn btn-light btn-outline-primary" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti(razredId=${razred.id}, korisnikId=${korisnik.id})}">Pregled</a></td>
+                    <td><a class="btn btn-light btn-outline-primary" th:href="@{/razredi/{razredId}/ucenici/{korisnikId}/predmeti-ocjene(razredId=${razred.id}, korisnikId=${korisnik.id})}">Pregled</a></td>
                     <td><a class="btn btn-light btn-outline-primary" th:href="@{/razred/{razredId}/ucenici/{ucenikId}/izostanci(razredId=${razred.id}, ucenikId=${korisnik.id})}">Pregled</a></td>
                     
                         
