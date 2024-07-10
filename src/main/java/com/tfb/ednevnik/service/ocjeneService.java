@@ -16,5 +16,6 @@ public interface ocjeneService {
     void updateOcjena(Ocjene ocjena);
     //Get average ocjena for predmet
     Double findAverageOcjenaByPredmetIdAndKorisnikId(Long predmetId, Long korisnikId);
+    void deleteOcjenaById(Long ocjenaId);
     
 }
