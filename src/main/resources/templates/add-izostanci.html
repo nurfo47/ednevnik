@@ -46,8 +46,8 @@
                 </button>
             </div>
         </div>
-<div class="container"> 
-    <h2 class="text-center display-5 mt-4">UNESI IZOSTANAK ZA: <b><span th:text="${ucenik.ime} + ' ' + ${ucenik.prezime}"></span></b></h2>
+<div class="container edit-form"> 
+    <h2 class="text-center display-5 mt-4">UNESI IZOSTANAK ZA <b><span th:text="${ucenik.ime} + ' ' + ${ucenik.prezime}"></span></b></h2>
     <div class="row justify-content-center">
         <div class="col-sm-12 col-md-6 col-lg-6">
         <form th:action="@{/save}" method="post" >
