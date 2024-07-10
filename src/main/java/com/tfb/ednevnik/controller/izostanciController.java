@@ -149,5 +149,11 @@ public class izostanciController {
         return "redirect:/razrednik-dashboard";
     }
 
+    @GetMapping("/deleteIzostanak/{izostanakId}")
+    public String deleteIzostanak(@PathVariable Long izostanakId) {
+        Izostanci izostanci = izostanciService.getById(izostanakId);
+        izostanciService.deleteById(izostanakId);
+        return "redirect:/razred/" + izostanci.getRazred().getId() + "/ucenici/" + izostanci.getKorisnik().getId() + "/izostanci";
+    }
     
 }
