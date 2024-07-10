@@ -52,6 +52,11 @@ public class ocjeneServiceImpl implements ocjeneService {
         return ocjeneRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public void deleteOcjenaById(Long ocjenaId) {
+        ocjeneRepository.deleteById(ocjenaId);
+    }
+
     
     
 }
