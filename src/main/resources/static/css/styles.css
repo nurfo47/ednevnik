@@ -13,6 +13,17 @@ body {
     margin-bottom: 25px;
 }
 
+.edit-form {
+    background-color: #fff; /* White background for the form */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Small shadow */
+    max-width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
 .floating-alert {
     position: fixed;
     top: 20px;
