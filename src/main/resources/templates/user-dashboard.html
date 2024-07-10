@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">POČETNA</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard/predmeti}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">PREDMETI</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard/predmeti-ocjene}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">PREDMETI</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/user-dashboard/izostanci}"  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">IZOSTANCI</a></li>
                 <li class="nav-item"><a class="nav-link" href=""  th:if="${#authorization.expression('hasRole(''ROLE_UCENIK'')')}">RASPORED</a></li>
             </ul>
@@ -49,7 +49,7 @@
                         <h4 class="card-title mb-4 display-6">PREDMETI</h4>
                         <i class="fas fa-book fa-5x mb-4" style="color: darkgreen"></i>
                         <div class="mt-auto">
-                            <a th:href="@{/user-dashboard/predmeti}"  class="btn btn-light btn-outline-success">PREGLED PREDMETA</a>
+                            <a th:href="@{/user-dashboard/predmeti-ocjene}"  class="btn btn-light btn-outline-success">PREGLED PREDMETA</a>
                         </div>
                     </div>
                 </div>
