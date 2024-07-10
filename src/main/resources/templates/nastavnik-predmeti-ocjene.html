@@ -70,7 +70,7 @@
                                                 <td th:text="${#temporals.format(ocjena.datum, 'dd-MM-yyyy')}"></td> 
                                                 <td>
                                                     <a class="btn btn-light btn-outline-success" th:href="@{/ocjene/{ocjenaId}/edit-ocjena(ocjenaId=${ocjena.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">UREDI</a>
-                                                    <a class="btn btn-danger" href="" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">OBRIŠI</a>
+                                                    <a class="btn btn-danger" th:href="@{/delete/{ocjenaId}(ocjenaId=${ocjena.id})}" th:if="${#authorization.expression('hasRole(''ROLE_NASTAVNIK'')')}">OBRIŠI</a>
                                                 </td> 
                                             </tr>
                                             <tr>
