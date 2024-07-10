@@ -19,4 +19,5 @@ public interface izostanciService {
     long countIzostanciByKorisnikId(Long korisnikId);
     long countOpravdaniIzostanciByKorisnikId(Long korisnikId);
     long countNeopravdaniIzostanciByKorisnikId(Long korisnikId);
+    void deleteById(Long izostanakId);
 }
