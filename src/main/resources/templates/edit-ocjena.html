@@ -49,10 +49,18 @@
 <div class="container"> 
     
     <div class="row justify-content-center">
+        <h2 class="text-center display-5 mt-4">ISPRAVKA OCJENE</h2>
         <div class="col-sm-12 col-md-6 col-lg-6">
-        <form th:action="@{/ocjene/edit/id(id=${ocjena.id})}" th:object="${ocjena}" method="post">
-            <div class="form-floating mt-4 mb-3">
-                <input type="number" id="ocjena" class="form-control" name="ocjena" step="0.1" th:field="*{ocjena}">
+        <form th:action="@{/edit-ocjena/{ocjenaId}(ocjenaId=${ocjena.id})}" th:object="${ocjena}" method="post">
+            
+            <div class="form-floating mb-3 mt-4">
+                <select class="form-select" id="ocjena" name="ocjena" step="0.1" th:field="*{ocjena}">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
                 <label for="ocjena">Ocjena</label>
             </div>
             <div class="form-floating mt-4 mb-3">
