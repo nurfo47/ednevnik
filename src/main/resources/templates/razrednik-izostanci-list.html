@@ -47,7 +47,7 @@
 </nav>  
        <!-- Dashboard Content -->
     <div class="container mt-5">
-       <h2 class="display-6">UČENIK: <span th:text="${ucenik.ime} + ' ' + ${ucenik.prezime}"></span></h2> 
+       <h2 class="display-6">UČENIK <span th:text="${ucenik.ime} + ' ' + ${ucenik.prezime}"></span></h2> 
         <div class="row table-responsive">
             <table class="table table-bordered ">
                 <thead>
@@ -63,7 +63,9 @@
                         <td th:text="${#temporals.format(izostanci.datum, 'dd-MM-yyyy')}"></td>
                         <td th:text="${izostanci.opravdanost}"></td>
                         <td th:text="${izostanci.razlog}"></td>
-                        <td><a class="btn btn-light btn-outline-dark" th:href="@{/izostanak/edit/{id}(id=${izostanci.id})}" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">UREDI</a></td>
+                        <td><a class="btn btn-light btn-outline-primary" th:href="@{/izostanak/edit/{id}(id=${izostanci.id})}" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">UREDI</a>
+                            <a class="btn btn-danger" th:href="@{/deleteIzostanak/{izostanakId}(izostanakId=${izostanci.id})}" th:if="${#authorization.expression('hasRole(''ROLE_RAZREDNIK'')')}">OBRIŠI</a>
+                        </td>
                     </tr>
 
                     <tr>
