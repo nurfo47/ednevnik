@@ -71,5 +71,10 @@ public class izostanciServiceImpl implements izostanciService {
     public void updateIzostanci(Izostanci izostanci) {
         izostanciRepository.save(izostanci);
     }
+
+    @Override
+    public void deleteById(Long izostanakId) {
+        izostanciRepository.deleteById(izostanakId);
+    }
     
 }
