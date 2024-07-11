@@ -241,7 +241,7 @@ public class KorisnikController {
     }
 
     @PostMapping("/update/{id}")
-    public String updateKorisnik(@PathVariable("id") Long id, @RequestParam("razredId") Long razredId, RedirectAttributes redirectAttributes) {
+    public String updateKorisnik(@PathVariable("id") Long id, @RequestParam(name="razredId", required = false) Long razredId, RedirectAttributes redirectAttributes) {
         korisnikService.updateKorisnikAndRazred(id, razredId);
         redirectAttributes.addFlashAttribute("message", "Uspješno izmjenjeno");
         return "redirect:/korisnici";
