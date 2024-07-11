@@ -46,7 +46,7 @@
                     <option th:each="korisnik : ${korisnici}" th:value="${korisnik.id}" th:text="${korisnik.ime} + ' ' + ${korisnik.prezime}" th:if="${korisnik.tip} == 'NASTAVNIK'"></option>
                 </select>
                 <select class="form-control form-select-lg mt-4 mb-5" name="predmetId" multiple>
-                    <option th:each="predmet : ${predmeti}" th:value="${predmet.id}" th:text="${predmet.naziv}"></option>
+                    <option th:each="predmet : ${predmeti}" th:value="${predmet.id}" th:text="${predmet.naziv} + ' ' + ${predmet.grupa}"></option>
                 </select>
                 <button type="submit" class="btn btn-light btn-block btn-outline-success float-end">Dodijeli predmete</button>
             </div>
