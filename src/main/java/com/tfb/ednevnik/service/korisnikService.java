@@ -19,7 +19,7 @@ public interface korisnikService {
     Korisnik findKorisnikByUsername(String username);
     Korisnik save(Korisnik korisnik);
     void toggleActivation(Long id);
-    void updateKorisnikAndRazred(long korisnikId, long razredId);
+    void updateKorisnikAndRazred(Long korisnikId, Long razredId);
     List <Korisnik> findByTip(String tip);
     void assignPredmetiToKorisnik(Long korisnikId, List<Long> predmetId);
     List<Korisnik> findByPredmet(Predmet predmet);
