@@ -46,7 +46,7 @@
                     <option th:each="razred : ${razredi}" th:value="${razred.id}" th:text="${razred.naziv} + ' ' + ${razred.skolskaGodina}"></option>
                 </select>
                 <select class="form-control mt-4 mb-4 form-select-lg" name="predmetId" multiple>
-                    <option th:each="predmet : ${predmeti}" th:value="${predmet.id}" th:text="${predmet.naziv}"></option>
+                    <option th:each="predmet : ${predmeti}" th:value="${predmet.id}" th:text="${predmet.naziv} + ' ' + ${predmet.grupa}"></option>
                 </select>
 
                 <button type="submit" class="btn btn-light btn-block btn-outline-success float-end">Dodijeli predmete</button>
