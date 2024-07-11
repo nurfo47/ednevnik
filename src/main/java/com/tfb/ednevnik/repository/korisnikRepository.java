@@ -13,6 +13,7 @@ import com.tfb.ednevnik.model.Razred;
 @Repository
 public interface korisnikRepository extends JpaRepository<Korisnik, Long>{
     Korisnik findById(long id);
+    Korisnik findKorisnikById(Long id);
     Korisnik findByUsername(String username);
     Korisnik findByJmbg(String jmbg);
     List<Korisnik> findByTip(String tip);
