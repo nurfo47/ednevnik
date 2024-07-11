@@ -108,10 +108,14 @@ public class korisnikServiceImpl implements korisnikService{
     }
 
     @Override
-    public void updateKorisnikAndRazred(long korisnikId, long razredId) {
-        Korisnik korisnik = korisnikRepository.findById(korisnikId);
-        Razred razred = razredRepository.getById(razredId);
-        korisnik.setRazred(razred);
+    public void updateKorisnikAndRazred(Long korisnikId, Long razredId) {
+        Korisnik korisnik = korisnikRepository.findKorisnikById(korisnikId);
+        if (razredId != null) {
+            Razred razred = razredRepository.findById(razredId).orElseThrow();
+            korisnik.setRazred(razred);
+        } else {
+            korisnik.setRazred(null);
+        }
         korisnikRepository.save(korisnik);
     }
 
