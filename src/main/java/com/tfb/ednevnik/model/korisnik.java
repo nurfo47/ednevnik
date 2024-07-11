@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,6 +45,7 @@ public class Korisnik {
     @Column(unique = true, nullable = true)
     private String jmbg;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = true)
     private LocalDate datum;
 

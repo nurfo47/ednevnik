@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +19,9 @@ public class Predmet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(unique = true)
+    
     private String naziv;
+    private String grupa;
     
      // Many to many relationship with Razred
     @ManyToMany(mappedBy = "predmeti")
@@ -34,9 +34,10 @@ public class Predmet {
     @OneToMany(mappedBy = "predmet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ocjene> ocjeneList;
 
-    public Predmet(String naziv, List<Razred> razredi, Set<Korisnik> korisnik,
+    public Predmet(String naziv, String grupa, List<Razred> razredi, Set<Korisnik> korisnik,
         List<Ocjene> ocjeneList) {
         this.naziv = naziv;
+        this.grupa = grupa;
         this.razredi = razredi;
         this.korisnik = korisnik;
         this.ocjeneList = ocjeneList;
@@ -44,6 +45,14 @@ public class Predmet {
 
     public Predmet(){
         
+    }
+
+    public String getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(String grupa) {
+        this.grupa = grupa;
     }
 
     public long getId() {
