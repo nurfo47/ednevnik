@@ -48,7 +48,8 @@
                     <div th:each="predmet : ${predmet}" class="col-md-4 mb-4">
                         <div class="card text-center">
                             <div class="card-body">
-                                <h3 class="mb-3 display-6" th:text="${predmet.naziv}"></h3>
+                                <h3 class="mb-3 display-5" th:text="${predmet.naziv}"></h3>
+                                <h5 class="mb-3" >Grupa <span th:text="${predmet.grupa}"></span></h5>
                                 <a th:href="@{/predmeti/{id}/korisnici(id=${predmet.id})}" class="btn btn-light btn-outline-primary">PRIKAZ PREDAVAČA</a>
                             </div>
                         </div>
